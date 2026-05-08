@@ -15,7 +15,7 @@ export default function OrdersPage() {
     return (
       <div className="min-h-screen bg-muted/30">
         <Header />
-        <main className="container-responsive py-16 text-center">
+        <main className="container-responsive animate-fade-in py-16 text-center">
           <User className="h-16 w-16 mx-auto text-gray-300 mb-4" />
           <h1 className="text-2xl font-bold mb-2">يجب تسجيل الدخول</h1>
           <p className="text-gray-600 mb-6">سجّل دخولك لعرض طلباتك</p>
@@ -29,7 +29,7 @@ export default function OrdersPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <h1 className="text-xl sm:text-2xl font-bold mb-6">طلباتي</h1>
 
         {/* Order Tabs */}

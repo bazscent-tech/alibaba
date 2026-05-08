@@ -62,7 +62,7 @@ export function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="bg-gray-800 p-2 sm:p-2.5 rounded-full hover:bg-primary transition-colors touch-target"
+                  className="bg-gray-800 p-2 sm:p-2.5 rounded-full hover:bg-primary transition-all hover:scale-110 touch-feedback"
                   aria-label={`تابعنا على ${["فيسبوك", "تويتر", "إنستغرام", "يوتيوب"][i]}`}
                 >
                   <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -77,7 +77,7 @@ export function Footer() {
             <ul className="space-y-1.5 sm:space-y-2">
               {categories.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
-                  <Link href={`/category/${cat.slug}`} className="hover:text-primary transition-colors text-sm touch-target inline-flex items-center">
+                  <Link href={`/category/${cat.slug}`} className="hover:text-primary transition-all text-sm touch-target inline-flex items-center link-underline">
                     {cat.name}
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ export function Footer() {
                 { href: "/returns", label: "الإرجاع والاستبدال" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-primary transition-colors text-sm touch-target inline-flex items-center">
+                  <Link href={link.href} className="hover:text-primary transition-all text-sm touch-target inline-flex items-center link-underline">
                     {link.label}
                   </Link>
                 </li>

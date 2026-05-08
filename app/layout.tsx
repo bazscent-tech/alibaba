@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from 'next'
 import { Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { ScrollToTop } from '@/components/scroll-to-top'
+import { OfflineIndicator } from '@/components/offline-indicator'
+import { ToastContainer } from '@/components/toast-notification'
 
 const cairo = Cairo({ 
   subsets: ['arabic', 'latin'],
@@ -75,9 +78,12 @@ export default function RootLayout({
         {/* Preconnect to image CDNs */}
         <link rel="preconnect" href="https://images.unsplash.com" />
       </head>
-      <body className={`${cairo.className} font-sans antialiased overscroll-none`}>
+      <body className={`${cairo.className} font-sans antialiased overscroll-none smooth-scroll`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <ScrollToTop />
+        <ToastContainer />
+        <OfflineIndicator />
       </body>
     </html>
   )

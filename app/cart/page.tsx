@@ -38,7 +38,7 @@ export default function CartPage() {
     return (
       <div className="min-h-screen bg-muted/30">
         <Header />
-        <main className="container-responsive py-4 sm:py-6 md:py-8 sm:py-12 md:py-16">
+        <main className="container-responsive animate-fade-in py-4 sm:py-6 md:py-8 sm:py-12 md:py-16">
           <div className="text-center max-w-md mx-auto">
             <div className="w-32 h-32 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
               <ShoppingCart className="w-16 h-16 text-muted-foreground" />
@@ -65,7 +65,7 @@ export default function CartPage() {
     <div className="min-h-screen bg-muted/30">
       <Header />
 
-      <main className="container-responsive py-4 sm:py-6 md:py-8">
+      <main className="container-responsive animate-fade-in py-4 sm:py-6 md:py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-6">
           <Link href="/" className="text-muted-foreground hover:text-primary">

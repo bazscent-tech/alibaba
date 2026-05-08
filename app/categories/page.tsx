@@ -13,7 +13,7 @@ export default function CategoriesPage() {
     <div className="min-h-screen bg-muted/30">
       <Header />
 
-      <main className="container-responsive py-4 sm:py-6 md:py-8">
+      <main className="container-responsive animate-fade-in py-4 sm:py-6 md:py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-6">
           <Link href="/" className="text-muted-foreground hover:text-primary">

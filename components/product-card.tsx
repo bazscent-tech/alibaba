@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { Product } from "@/lib/data";
 import { getSupplierById } from "@/lib/data";
 import { useCartStore, useWishlistStore } from "@/lib/store";
+import { showToast } from "@/components/toast-notification";
 
 interface ProductCardProps {
   product: Product;
@@ -23,6 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, product.moq);
+    showToast("cart", "تمت إضافة المنتج للسلة");
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -30,8 +32,10 @@ export function ProductCard({ product }: ProductCardProps) {
     e.stopPropagation();
     if (inWishlist) {
       removeWishlist(product.id);
+      showToast("wishlist", "تمت الإزالة من المفضلة");
     } else {
       addWishlist(product);
+      showToast("wishlist", "تمت الإضافة للمفضلة");
     }
   };
 

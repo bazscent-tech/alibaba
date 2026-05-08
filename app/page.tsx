@@ -98,7 +98,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
             {categories.map((category) => (
-              <Link key={category.id} href={`/category/${category.slug}`} className="group">
+              <Link key={category.id} href={`/category/${category.slug}`} className="group animate-fade-in-up opacity-0 stagger-{i || 1}">
                 <Card className="hover:shadow-md transition-shadow card-interactive">
                   <CardContent className="p-2 sm:p-3 md:p-4 text-center">
                     <div className="bg-primary/10 rounded-full p-2.5 sm:p-3 md:p-4 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-1.5 sm:mb-3 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
@@ -115,7 +115,7 @@ export default function HomePage() {
         </section>
 
         {/* Featured Products */}
-        <section className="container-responsive section-padding">
+        <section className="container-responsive section-padding animate-fade-in">
           <div className="flex items-center justify-between mb-4 sm:mb-6">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">المنتجات الأكثر طلباً</h2>
             <Link href="/deals" className="text-primary hover:underline font-medium text-xs sm:text-sm">
@@ -130,7 +130,7 @@ export default function HomePage() {
         </section>
 
         {/* Banner */}
-        <section className="container-responsive section-padding">
+        <section className="container-responsive section-padding animate-fade-in">
           <div className="relative aspect-[16/7] sm:aspect-[16/5] md:aspect-[16/4] rounded-lg sm:rounded-xl overflow-hidden">
             <Image
               src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200"
@@ -183,7 +183,7 @@ export default function HomePage() {
         {/* Why Choose Us */}
         <section className="bg-gray-50 section-padding">
           <div className="container-responsive">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center mb-6 sm:mb-8 animate-fade-in">
               لماذا تختار شبام جملة؟
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
@@ -217,7 +217,7 @@ export default function HomePage() {
                   desc: "نوصل طلباتك إلى أي مكان في العالم بأمان وسرعة",
                 },
               ].map((item, i) => (
-                <div key={i} className="text-center">
+                <div key={i} className="text-center hover-lift">
                   <div className="bg-primary/10 rounded-full p-4 sm:p-5 md:p-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
                     {item.icon}
                   </div>

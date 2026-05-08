@@ -26,7 +26,7 @@ export default function AboutPage() {
               { value: "+200", label: "دولة يتم توصيلها" },
               { value: "+50,000", label: "مشتري نشط" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center p-4 bg-white rounded-xl shadow-sm">
+              <div key={stat.label} className="text-center p-4 bg-white rounded-xl shadow-sm hover-lift">
                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">{stat.value}</p>
                 <p className="text-xs sm:text-sm text-gray-600 mt-1">{stat.label}</p>
               </div>

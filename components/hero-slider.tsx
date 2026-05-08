@@ -45,7 +45,7 @@ export function HeroSlider() {
           <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/40 to-transparent" />
           <div className="absolute inset-0 flex items-center">
             <div className="container-responsive">
-              <div className="max-w-[280px] sm:max-w-sm md:max-w-xl mr-auto text-white">
+              <div className="max-w-[280px] sm:max-w-sm md:max-w-xl mr-auto text-white animate-fade-in-up">
                 <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 text-balance leading-tight">
                   {slide.title}
                 </h2>
@@ -88,7 +88,7 @@ export function HeroSlider() {
         {heroSlides.map((_, index) => (
           <button
             key={index}
-            className={`h-1.5 sm:h-2 rounded-full transition-all touch-target ${
+            className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 touch-target ${
               index === currentSlide ? "w-6 sm:w-8 bg-white" : "w-1.5 sm:w-2 bg-white/50"
             }`}
             onClick={() => setCurrentSlide(index)}

@@ -55,7 +55,7 @@ export default function ProductPage() {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container-responsive py-3 sm:py-4 md:py-6 sm:py-8 md:py-12 text-center">
+        <main className="container-responsive animate-fade-in py-3 sm:py-4 md:py-6 sm:py-8 md:py-12 text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             المنتج غير موجود
           </h1>
@@ -111,7 +111,7 @@ export default function ProductPage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="container-responsive py-3 sm:py-4 md:py-6">
+      <main className="container-responsive animate-fade-in py-3 sm:py-4 md:py-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6 flex-wrap">
           <Link href="/" className="hover:text-primary">

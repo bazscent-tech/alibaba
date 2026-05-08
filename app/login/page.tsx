@@ -93,7 +93,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-muted/30">
       <Header />
 
-      <main className="container-responsive py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
+      <main className="container-responsive animate-fade-in py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
         <div className="max-w-md mx-auto">
           <Card className="p-6">
             <div className="text-center mb-6">
@@ -122,7 +122,7 @@ export default function LoginPage() {
                         id="login-email"
                         type="email"
                         placeholder="example@company.com"
-                        className="pr-10"
+                        className="pr-10 focus-ring"
                         value={loginData.email}
                         onChange={(e) =>
                           setLoginData({ ...loginData, email: e.target.value })
@@ -140,7 +140,7 @@ export default function LoginPage() {
                         id="login-password"
                         type={showPassword ? "text" : "password"}
                         placeholder="••••••••"
-                        className="pr-10 pl-10"
+                        className="pr-10 pl-10 focus-ring"
                         value={loginData.password}
                         onChange={(e) =>
                           setLoginData({
@@ -198,7 +198,7 @@ export default function LoginPage() {
                         <Input
                           id="reg-name"
                           placeholder="أحمد محمد"
-                          className="pr-10"
+                          className="pr-10 focus-ring"
                           value={registerData.name}
                           onChange={(e) =>
                             setRegisterData({
@@ -218,7 +218,7 @@ export default function LoginPage() {
                         <Input
                           id="reg-phone"
                           placeholder="+966 5XX XXX XXX"
-                          className="pr-10"
+                          className="pr-10 focus-ring"
                           value={registerData.phone}
                           onChange={(e) =>
                             setRegisterData({
@@ -239,7 +239,7 @@ export default function LoginPage() {
                         id="reg-email"
                         type="email"
                         placeholder="example@company.com"
-                        className="pr-10"
+                        className="pr-10 focus-ring"
                         value={registerData.email}
                         onChange={(e) =>
                           setRegisterData({
@@ -260,7 +260,7 @@ export default function LoginPage() {
                         <Input
                           id="reg-company"
                           placeholder="شركة ABC"
-                          className="pr-10"
+                          className="pr-10 focus-ring"
                           value={registerData.company}
                           onChange={(e) =>
                             setRegisterData({

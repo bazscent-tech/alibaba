@@ -43,7 +43,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-8 sm:py-12 md:py-16">
+      <main className="container-responsive animate-fade-in py-8 sm:py-12 md:py-16">
         <div className="max-w-md mx-auto">
           <Card>
             <CardContent className="p-6 sm:p-8">
@@ -84,7 +84,7 @@ export default function RegisterPage() {
                       id="name"
                       type="text"
                       placeholder="أدخل اسمك"
-                      className="pr-10"
+                      className="pr-10 focus-ring"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       required
@@ -100,7 +100,7 @@ export default function RegisterPage() {
                       id="email"
                       type="email"
                       placeholder="example@email.com"
-                      className="pr-10"
+                      className="pr-10 focus-ring"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       required
@@ -116,7 +116,7 @@ export default function RegisterPage() {
                       id="phone"
                       type="tel"
                       placeholder="+966 5x xxx xxxx"
-                      className="pr-10"
+                      className="pr-10 focus-ring"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     />
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                         id="company"
                         type="text"
                         placeholder="اسم شركتك"
-                        className="pr-10"
+                        className="pr-10 focus-ring"
                         value={form.company}
                         onChange={(e) => setForm({ ...form, company: e.target.value })}
                       />
@@ -148,7 +148,7 @@ export default function RegisterPage() {
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="••••••••"
-                      className="pr-10 pl-10"
+                      className="pr-10 pl-10 focus-ring"
                       value={form.password}
                       onChange={(e) => setForm({ ...form, password: e.target.value })}
                       required
@@ -164,7 +164,7 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full press-effect">
                   إنشاء الحساب
                 </Button>
               </form>

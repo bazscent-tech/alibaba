@@ -22,7 +22,7 @@ export default function AccountPage() {
     return (
       <div className="min-h-screen bg-muted/30">
         <Header />
-        <main className="container-responsive py-16 text-center">
+        <main className="container-responsive animate-fade-in py-16 text-center">
           <User className="h-16 w-16 mx-auto text-gray-300 mb-4" />
           <h1 className="text-2xl font-bold mb-2">يجب تسجيل الدخول</h1>
           <p className="text-gray-600 mb-6">سجّل دخولك للوصول إلى حسابك</p>
@@ -39,7 +39,7 @@ export default function AccountPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <h1 className="text-xl sm:text-2xl font-bold mb-6">حسابي</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -70,7 +70,7 @@ export default function AccountPage() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all hover-scale-sm ${
                         activeTab === tab.id
                           ? "bg-primary/10 text-primary font-medium"
                           : "text-gray-600 hover:bg-gray-50"

@@ -13,7 +13,7 @@ export default function TopRatedPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <div className="flex items-center gap-2 mb-6">
           <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
           <h1 className="text-xl sm:text-2xl font-bold">الأعلى تقييماً</h1>

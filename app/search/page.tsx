@@ -29,7 +29,7 @@ function SearchContent() {
   };
 
   return (
-    <main className="container-responsive py-6">
+    <main className="container-responsive animate-fade-in py-6">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
         <Link href="/" className="hover:text-primary">

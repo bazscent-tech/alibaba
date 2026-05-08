@@ -231,7 +231,7 @@ export function Header() {
                 <ChevronDown className="h-4 w-4" />
               </button>
               {megaMenuOpen && (
-                <div className="absolute top-full right-0 bg-white shadow-xl border border-gray-200 rounded-lg w-[min(700px,calc(100vw-2rem))] z-50">
+                <div className="absolute top-full right-0 bg-white shadow-xl border border-gray-200 rounded-lg w-[min(700px,calc(100vw-2rem))] z-50 animate-fade-in-down origin-top">
                   <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 p-4 lg:p-6">
                     {categories.slice(0, 12).map((category) => (
                       <div key={category.id}>
@@ -266,7 +266,7 @@ export function Header() {
               { href: "/category/home-garden", label: "المنزل والحديقة" },
               { href: "/suppliers", label: "الموردون" },
             ].map((link) => (
-              <Link key={link.href} href={link.href} className="text-gray-700 hover:text-primary whitespace-nowrap text-sm py-2">
+              <Link key={link.href} href={link.href} className="text-gray-700 hover:text-primary whitespace-nowrap text-sm py-2 link-underline transition-colors" prefetch={true}>
                 {link.label}
               </Link>
             ))}
@@ -276,7 +276,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 bottom-0 top-[var(--header-height,120px)] bg-white z-40 overflow-y-auto overscroll-contain">
+        <div className="md:hidden fixed inset-x-0 bottom-0 top-[var(--header-height,120px)] bg-white z-40 overflow-y-auto overscroll-contain animate-slide-in-up">
           <div className="container-responsive py-4 space-y-1">
             <div className="pb-3 mb-3 border-b border-gray-100">
               <Link href="/sell" className="block text-primary font-semibold py-3 text-base" onClick={() => setMobileMenuOpen(false)}>

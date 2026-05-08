@@ -66,7 +66,7 @@ export default function SitemapPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <div className="flex items-center gap-2 mb-6">
           <MapPin className="h-6 w-6 text-primary" />
           <h1 className="text-xl sm:text-2xl font-bold">خريطة الموقع</h1>

@@ -6,7 +6,7 @@ export default function ReturnsPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <RotateCcw className="h-6 w-6 text-primary" />

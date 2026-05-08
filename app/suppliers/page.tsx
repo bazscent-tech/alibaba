@@ -10,7 +10,7 @@ export default function SuppliersPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <Header />
-      <main className="container-responsive py-6 sm:py-8">
+      <main className="container-responsive animate-fade-in py-6 sm:py-8">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold">دليل الموردين</h1>
@@ -21,7 +21,7 @@ export default function SuppliersPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {suppliers.map((supplier) => (
-            <Card key={supplier.id} className="hover:shadow-lg transition-shadow">
+            <Card key={supplier.id} className="hover-lift">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div>
