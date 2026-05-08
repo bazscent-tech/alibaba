@@ -68,9 +68,9 @@ export function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="bg-primary rounded-lg p-2">
-                <span className="text-white font-bold text-xl">علي</span>
+                <span className="text-white font-bold text-xl">شبام</span>
               </div>
-              <span className="font-bold text-xl text-white">ماركت</span>
+              <span className="font-bold text-xl text-white">جملة</span>
             </div>
             <p className="text-gray-400 mb-4 leading-relaxed">
               أكبر منصة عربية للتجارة الإلكترونية بين الشركات. نربط المشترين
@@ -173,7 +173,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>support@alimarket.com</span>
+                <span>support@shabam.com</span>
               </li>
             </ul>
           </div>
@@ -185,7 +185,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-400">
-              © 2026 علي ماركت. جميع الحقوق محفوظة.
+              © 2026 شبام جملة. جميع الحقوق محفوظة.
             </p>
             <div className="flex items-center gap-6 text-sm">
               <Link href="/privacy" className="hover:text-primary transition-colors">

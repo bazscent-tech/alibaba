@@ -78,7 +78,7 @@ export const useCartStore = create<CartState>()(
       }
     }),
     {
-      name: 'alibaba-cart'
+      name: 'shabam-cart'
     }
   )
 );
@@ -93,7 +93,7 @@ export const useUserStore = create<UserState>()(
       logout: () => set({ isLoggedIn: false, user: null, userType: null })
     }),
     {
-      name: 'alibaba-user'
+      name: 'shabam-user'
     }
   )
 );

@@ -100,7 +100,7 @@ export default function LoginPage() {
               <div className="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center">
                 <User className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h1 className="text-2xl font-bold">مرحباً بك في علي تريد</h1>
+              <h1 className="text-2xl font-bold">مرحباً بك في شبام جملة</h1>
               <p className="text-muted-foreground mt-2">
                 منصة التجارة الإلكترونية B2B الرائدة
               </p>

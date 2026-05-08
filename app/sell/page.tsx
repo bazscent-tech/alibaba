@@ -181,7 +181,7 @@ export default function SellPage() {
               تم تسجيلك بنجاح!
             </h1>
             <p className="text-gray-600 mb-6 text-lg">
-              مرحباً بك في علي ماركت. تم إنشاء حساب البائع الخاص بك بنجاح.
+              مرحباً بك في شبام جملة. تم إنشاء حساب البائع الخاص بك بنجاح.
               سيتواصل فريقنا معك خلال 24-48 ساعة للتحقق من بياناتك وتفعيل حسابك.
             </p>
             <Card className="mb-8">
@@ -240,7 +240,7 @@ export default function SellPage() {
         <div className="bg-gradient-to-l from-primary to-primary/80 text-white rounded-xl p-8 mb-8">
           <div className="max-w-2xl">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              انضم كبائع في علي ماركت
+              انضم كبائع في شبام جملة
             </h1>
             <p className="text-lg opacity-90 mb-6">
               اعرض منتجاتك لملايين المشترين حول العالم واحصل على فرص تجارية جديدة.

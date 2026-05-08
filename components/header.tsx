@@ -80,10 +80,10 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <div className="bg-white rounded-lg p-2">
-                <span className="text-primary font-bold text-xl">علي</span>
+                <span className="text-primary font-bold text-xl">شبام</span>
               </div>
               <div className="hidden sm:block text-white">
-                <span className="font-bold text-xl">ماركت</span>
+                <span className="font-bold text-xl">جملة</span>
                 <span className="block text-xs opacity-80">
                   B2B التجارة الإلكترونية
                 </span>
