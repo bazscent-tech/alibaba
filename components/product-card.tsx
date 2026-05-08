@@ -24,53 +24,54 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link href={`/product/${product.slug}`}>
-      <Card className="group h-full hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+    <Link href={`/product/${product.slug}`} className="block h-full">
+      <Card className="group h-full hover:shadow-lg transition-shadow duration-300 overflow-hidden card-interactive">
         <div className="relative aspect-square overflow-hidden bg-gray-100">
           <Image
             src={product.image}
             alt={product.name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            loading="lazy"
           />
           {product.freeShipping && (
-            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+            <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-green-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
               شحن مجاني
             </div>
           )}
           {product.readyToShip && (
-            <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+            <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 bg-blue-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
               جاهز للشحن
             </div>
           )}
         </div>
-        <CardContent className="p-4">
-          <h3 className="font-medium text-gray-900 line-clamp-2 mb-2 min-h-[48px]">
+        <CardContent className="p-2.5 sm:p-3 md:p-4">
+          <h3 className="font-medium text-gray-900 line-clamp-2 mb-1.5 sm:mb-2 min-h-[36px] sm:min-h-[48px] text-xs sm:text-sm md:text-base leading-snug">
             {product.name}
           </h3>
 
-          <div className="flex items-baseline gap-1 mb-2">
-            <span className="text-lg font-bold text-primary">
+          <div className="flex items-baseline gap-0.5 sm:gap-1 mb-1 sm:mb-2">
+            <span className="text-sm sm:text-lg font-bold text-primary">
               ${product.priceMin.toFixed(2)}
             </span>
             <span className="text-gray-500">-</span>
-            <span className="text-lg font-bold text-primary">
+            <span className="text-sm sm:text-lg font-bold text-primary">
               ${product.priceMax.toFixed(2)}
             </span>
-            <span className="text-sm text-gray-500">/ {product.unit}</span>
+            <span className="text-[10px] sm:text-sm text-gray-500">/ {product.unit}</span>
           </div>
 
-          <div className="text-sm text-gray-600 mb-2">
-            الحد الأدنى للطلب: {product.moq} {product.unit}
+          <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-1 sm:mb-2">
+            الحد الأدنى: {product.moq} {product.unit}
           </div>
 
-          <div className="flex items-center gap-1 mb-3">
+          <div className="flex items-center gap-0.5 sm:gap-1 mb-2 sm:mb-3">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-4 w-4 ${
+                  className={`h-3 w-3 sm:h-4 sm:w-4 ${
                     i < Math.floor(product.rating)
                       ? "fill-yellow-400 text-yellow-400"
                       : "fill-gray-200 text-gray-200"
@@ -78,16 +79,16 @@ export function ProductCard({ product }: ProductCardProps) {
                 />
               ))}
             </div>
-            <span className="text-sm text-gray-500">({product.rating})</span>
-            <span className="text-sm text-gray-400 mr-2">
+            <span className="text-[10px] sm:text-sm text-gray-500">({product.rating})</span>
+            <span className="text-[10px] sm:text-sm text-gray-400 mr-1 sm:mr-2 hidden sm:inline">
               | {product.orders.toLocaleString("ar-SA")} طلب
             </span>
           </div>
 
           {supplier && (
-            <div className="flex items-center gap-2 text-sm text-gray-600 border-t pt-3">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm text-gray-600 border-t pt-2 sm:pt-3">
               {supplier.verified && (
-                <CheckCircle className="h-4 w-4 text-blue-500" />
+                <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 shrink-0" />
               )}
               <span className="truncate">{supplier.name}</span>
             </div>
@@ -96,10 +97,10 @@ export function ProductCard({ product }: ProductCardProps) {
           <Button
             variant="outline"
             size="sm"
-            className="w-full mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="w-full mt-2 sm:mt-3 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity text-[10px] sm:text-xs h-8 sm:h-9"
             onClick={handleAddToCart}
           >
-            <ShoppingCart className="h-4 w-4 ml-2" />
+            <ShoppingCart className="h-3 w-3 sm:h-4 sm:w-4 ml-1 sm:ml-2" />
             إضافة للسلة
           </Button>
         </CardContent>

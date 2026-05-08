@@ -93,7 +93,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-muted/30">
       <Header />
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container-responsive py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
         <div className="max-w-md mx-auto">
           <Card className="p-6">
             <div className="text-center mb-6">

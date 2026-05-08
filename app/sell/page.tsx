@@ -172,7 +172,7 @@ export default function SellPage() {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-12">
+        <main className="container-responsive py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-green-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
               <CheckCircle className="h-12 w-12 text-green-600" />
@@ -226,7 +226,7 @@ export default function SellPage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container-responsive py-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href="/" className="hover:text-primary">

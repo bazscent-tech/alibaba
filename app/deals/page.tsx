@@ -53,8 +53,8 @@ export default function DealsPage() {
 
       <main>
         {/* Hero Banner */}
-        <section className="bg-gradient-to-l from-red-600 to-orange-500 py-12">
-          <div className="container mx-auto px-4">
+        <section className="bg-gradient-to-l from-red-600 to-orange-500 py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
+          <div className="container-responsive">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="text-white text-center lg:text-right">
                 <div className="flex items-center gap-2 justify-center lg:justify-start mb-4">
@@ -76,21 +76,21 @@ export default function DealsPage() {
                   <span className="font-medium">ينتهي العرض خلال</span>
                 </div>
                 <div className="flex gap-4 text-center">
-                  <div className="bg-white/20 rounded-lg p-3 min-w-[70px]">
+                  <div className="bg-white/20 rounded-lg p-3 min-w-[55px] sm:min-w-[70px]">
                     <div className="text-3xl font-bold">
                       {String(timeLeft.hours).padStart(2, "0")}
                     </div>
                     <div className="text-xs opacity-80">ساعة</div>
                   </div>
                   <div className="text-3xl font-bold">:</div>
-                  <div className="bg-white/20 rounded-lg p-3 min-w-[70px]">
+                  <div className="bg-white/20 rounded-lg p-3 min-w-[55px] sm:min-w-[70px]">
                     <div className="text-3xl font-bold">
                       {String(timeLeft.minutes).padStart(2, "0")}
                     </div>
                     <div className="text-xs opacity-80">دقيقة</div>
                   </div>
                   <div className="text-3xl font-bold">:</div>
-                  <div className="bg-white/20 rounded-lg p-3 min-w-[70px]">
+                  <div className="bg-white/20 rounded-lg p-3 min-w-[55px] sm:min-w-[70px]">
                     <div className="text-3xl font-bold">
                       {String(timeLeft.seconds).padStart(2, "0")}
                     </div>
@@ -102,7 +102,7 @@ export default function DealsPage() {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container-responsive py-6 sm:py-4 sm:py-6 md:py-8 md:py-12">
           {/* Quick Categories */}
           <div className="flex flex-wrap gap-3 mb-12 justify-center">
             <Button variant="outline" className="gap-2">

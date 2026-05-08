@@ -64,8 +64,8 @@ export default function ShippingPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-l from-primary to-accent py-16">
-          <div className="container mx-auto px-4 text-center text-primary-foreground">
+        <section className="bg-gradient-to-l from-primary to-accent py-8 sm:py-6 sm:py-8 md:py-12 md:py-16">
+          <div className="container-responsive text-center text-primary-foreground">
             <Truck className="w-16 h-16 mx-auto mb-4" />
             <h1 className="text-4xl font-bold mb-4">الشحن والتوصيل</h1>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
@@ -75,7 +75,7 @@ export default function ShippingPage() {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container-responsive py-6 sm:py-8 md:py-12">
           {/* Shipping Methods */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-8 text-center">

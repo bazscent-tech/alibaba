@@ -1,17 +1,20 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const cairo = Cairo({ 
   subsets: ['arabic', 'latin'],
-  variable: '--font-cairo'
-});
+  variable: '--font-cairo',
+  display: 'swap',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: 'شبام جملة - منصة التجارة الإلكترونية B2B',
   description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات - موردون موثوقون، أسعار الجملة، شحن عالمي',
   generator: 'v0.app',
+  manifest: '/manifest.json',
   icons: {
     icon: [
       {
@@ -29,6 +32,24 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'format-detection': 'telephone=no',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  minimumScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
 }
 
 export default function RootLayout({
@@ -38,7 +59,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="bg-background">
-      <body className={`${cairo.className} font-sans antialiased`}>
+      <head>
+        {/* Preconnect to image CDNs */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
+      <body className={`${cairo.className} font-sans antialiased overscroll-none`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

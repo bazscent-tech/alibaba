@@ -29,7 +29,7 @@ function SearchContent() {
   };
 
   return (
-    <main className="container mx-auto px-4 py-6">
+    <main className="container-responsive py-6">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
         <Link href="/" className="hover:text-primary">
@@ -70,7 +70,7 @@ function SearchContent() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
+            <div className="text-center py-6 sm:py-8 md:py-12">
               <p className="text-gray-600 mb-4">
                 لم نجد أي منتجات تطابق بحثك
               </p>
@@ -90,7 +90,7 @@ function SearchContent() {
           )}
         </>
       ) : (
-        <div className="text-center py-12">
+        <div className="text-center py-6 sm:py-8 md:py-12">
           <SearchIcon className="h-16 w-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             ابحث عن منتجات
@@ -118,7 +118,7 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <Suspense fallback={<div className="container mx-auto px-4 py-12 text-center">جاري التحميل...</div>}>
+      <Suspense fallback={<div className="container-responsive py-6 sm:py-8 md:py-12 text-center">جاري التحميل...</div>}>
         <SearchContent />
       </Suspense>
       <Footer />

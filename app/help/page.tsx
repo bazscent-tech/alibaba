@@ -105,8 +105,8 @@ export default function HelpPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-l from-primary to-accent py-16">
-          <div className="container mx-auto px-4 text-center text-primary-foreground">
+        <section className="bg-gradient-to-l from-primary to-accent py-8 sm:py-6 sm:py-8 md:py-12 md:py-16">
+          <div className="container-responsive text-center text-primary-foreground">
             <h1 className="text-4xl font-bold mb-4">مركز المساعدة</h1>
             <p className="text-xl opacity-90 mb-8">
               كيف يمكننا مساعدتك اليوم؟
@@ -123,7 +123,7 @@ export default function HelpPage() {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container-responsive py-6 sm:py-8 md:py-12">
           {/* Categories Grid */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-8 text-center">
