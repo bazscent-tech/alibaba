@@ -31,6 +31,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Login form state
   const [loginData, setLoginData] = useState({
@@ -67,13 +68,9 @@ export default function LoginPage() {
   };
 
   const handleRegister = async (e: React.FormEvent) => {
-    // Rate limiting
-    if (!checkRateLimit('register', 3, 300000)) {
-      setError("محاولات كثيرة. يرجى الانتظار 5 دقائق");
-      return;
-    }
     e.preventDefault();
     setIsLoading(true);
+    setError("");
 
     if (registerData.password !== registerData.confirmPassword) {
       alert("كلمات المرور غير متطابقة");

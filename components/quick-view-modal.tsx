@@ -43,7 +43,7 @@ export function QuickViewModal({
 
   if (!product) return null;
 
-  const supplier = getSupplierById(product.supplierIdId);
+  const supplier = getSupplierById(product.supplierId);
 
   const handleAddToCart = () => {
     addItem(product, quantity);
@@ -66,11 +66,6 @@ export function QuickViewModal({
               fill
               className="object-cover"
             />
-            {product.discount && product.discount > 0 && (
-              <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                -{product.discount}%
-              </div>
-            )}
           </div>
 
           {/* Product Info */}
@@ -103,11 +98,6 @@ export function QuickViewModal({
                 </span>
                 <span className="text-muted-foreground">/ قطعة</span>
               </div>
-              {product.discount && product.discount > 0 && (
-                <p className="text-sm text-green-600 font-medium">
-                  وفر {product.discount}% عند الطلب الآن!
-                </p>
-              )}
             </div>
 
             {/* Supplier */}
