@@ -43,7 +43,7 @@ export function QuickViewModal({
 
   if (!product) return null;
 
-  const supplier = getSupplierById(product.supplierId);
+  const supplier = getSupplierById(product.supplierIdId);
 
   const handleAddToCart = () => {
     addItem(product, quantity);
@@ -116,10 +116,10 @@ export function QuickViewModal({
                 <Package className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="font-medium">{product.supplier}</p>
+                <p className="font-medium">{product.supplierId}</p>
                 <p className="text-xs text-muted-foreground">{product.origin}</p>
               </div>
-              {product.verified && (
+              {false && (
                 <span className="flex items-center gap-1 text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
                   <CheckCircle2 className="w-3 h-3" />
                   موثق

@@ -68,7 +68,7 @@ export default function CategoriesPage() {
                         <Card className="p-4 hover:shadow-md transition-all hover:border-primary/50">
                           <div className="relative w-full aspect-square mb-3 rounded-lg overflow-hidden bg-muted">
                             <Image
-                              src={sub.image || category.icon}
+                              src={category.image || "/placeholder.png"}
                               alt={sub.name}
                               fill
                               className="object-cover group-hover:scale-105 transition-transform duration-300"

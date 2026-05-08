@@ -45,7 +45,6 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       addItem: (product, quantity = 1) => {
-        try {
         set((state) => {
           const existingItem = state.items.find(item => item.product.id === product.id);
           if (existingItem) {
