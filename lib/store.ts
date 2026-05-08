@@ -17,6 +17,14 @@ interface CartState {
   getTotalPrice: () => number;
 }
 
+interface WishlistState {
+  items: Product[];
+  addItem: (product: Product) => void;
+  removeItem: (productId: string) => void;
+  isInWishlist: (productId: string) => boolean;
+  clearWishlist: () => void;
+}
+
 interface UserState {
   isLoggedIn: boolean;
   userType: 'buyer' | 'seller' | null;
@@ -77,9 +85,31 @@ export const useCartStore = create<CartState>()(
         return get().items.reduce((total, item) => total + (item.product.priceMin * item.quantity), 0);
       }
     }),
-    {
-      name: 'shabam-cart'
-    }
+    { name: 'shabam-cart' }
+  )
+);
+
+export const useWishlistStore = create<WishlistState>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      addItem: (product) => {
+        set((state) => {
+          if (state.items.find(p => p.id === product.id)) return state;
+          return { items: [...state.items, product] };
+        });
+      },
+      removeItem: (productId) => {
+        set((state) => ({
+          items: state.items.filter(p => p.id !== productId)
+        }));
+      },
+      isInWishlist: (productId) => {
+        return get().items.some(p => p.id === productId);
+      },
+      clearWishlist: () => set({ items: [] }),
+    }),
+    { name: 'shabam-wishlist' }
   )
 );
 
@@ -92,8 +122,6 @@ export const useUserStore = create<UserState>()(
       login: (user, type) => set({ isLoggedIn: true, user, userType: type }),
       logout: () => set({ isLoggedIn: false, user: null, userType: null })
     }),
-    {
-      name: 'shabam-user'
-    }
+    { name: 'shabam-user' }
   )
 );

@@ -110,7 +110,7 @@ export default function CategoryPage() {
             عذراً، لم نتمكن من العثور على الفئة المطلوبة.
           </p>
           <Link href="/">
-            <Button>العودة للرئيسية</Button>
+            <Link href="/"><Button>العودة للرئيسية</Button></Link>
           </Link>
         </main>
         <Footer />

@@ -174,7 +174,12 @@ export default function DealsPage() {
                   size="lg"
                   className="bg-white text-red-600 hover:bg-white/90"
                 >
+                <Link href="/categories"><Button
+                  size="lg"
+                  className="bg-white text-red-600 hover:bg-white/90"
+                >
                   تسوق الآن
+                </Button></Link>
                 </Button>
               </div>
             </div>

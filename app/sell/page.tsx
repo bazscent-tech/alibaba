@@ -212,7 +212,7 @@ export default function SellPage() {
                 <Button variant="outline">العودة للرئيسية</Button>
               </Link>
               <Link href="/account">
-                <Button>الذهاب للوحة التحكم</Button>
+                <Link href="/account"><Button>الذهاب للوحة التحكم</Button></Link>
               </Link>
             </div>
           </div>

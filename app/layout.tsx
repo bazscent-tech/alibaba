@@ -32,6 +32,18 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  openGraph: {
+    title: 'شبام جملة - منصة التجارة الإلكترونية B2B',
+    description: 'أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+    type: 'website',
+    locale: 'ar_SA',
+    siteName: 'شبام جملة',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'شبام جملة',
+    description: 'أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+  },
   other: {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',

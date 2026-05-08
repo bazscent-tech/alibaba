@@ -13,6 +13,7 @@ import {
   Globe,
   Phone,
   Headphones,
+  Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,7 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { categories } from "@/lib/data";
-import { useCartStore, useUserStore } from "@/lib/store";
+import { useCartStore, useUserStore, useWishlistStore } from "@/lib/store";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,6 +32,7 @@ export function Header() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const router = useRouter();
   const cartItems = useCartStore((state) => state.getTotalItems());
+  const wishlistItems = useWishlistStore((state) => state.items.length);
   const { isLoggedIn, user, logout } = useUserStore();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -154,6 +156,17 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
+              {/* Wishlist */}
+              <Link href="/wishlist" className="touch-target flex items-center justify-center hidden sm:flex">
+                <Button variant="ghost" className="text-white hover:bg-white/10 relative px-2 sm:px-3">
+                  <Heart className="h-5 w-5" />
+                  {wishlistItems > 0 && (
+                    <span className="absolute -top-1 -left-1 bg-red-500 text-white text-[10px] sm:text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center">
+                      {wishlistItems}
+                    </span>
+                  )}
+                </Button>
+              </Link>
               {/* Cart */}
               <Link href="/cart" className="touch-target flex items-center justify-center">
                 <Button variant="ghost" className="text-white hover:bg-white/10 relative px-2 sm:px-3">

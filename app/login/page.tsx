@@ -486,7 +486,7 @@ export default function LoginPage() {
                 </p>
               </div>
               <Link href="/sell">
-                <Button>ابدأ البيع</Button>
+                <Link href="/sell"><Button>ابدأ البيع</Button></Link>
               </Link>
             </div>
           </Card>

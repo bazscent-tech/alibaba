@@ -63,7 +63,7 @@ export default function ProductPage() {
             عذراً، لم نتمكن من العثور على المنتج المطلوب.
           </p>
           <Link href="/">
-            <Button>العودة للرئيسية</Button>
+            <Link href="/"><Button>العودة للرئيسية</Button></Link>
           </Link>
         </main>
         <Footer />

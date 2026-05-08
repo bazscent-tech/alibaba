@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Truck, CheckCircle, ShoppingCart } from "lucide-react";
+import { Star, Truck, CheckCircle, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Product } from "@/lib/data";
 import { getSupplierById } from "@/lib/data";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 interface ProductCardProps {
   product: Product;
@@ -16,11 +16,23 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const supplier = getSupplierById(product.supplierId);
   const addItem = useCartStore((state) => state.addItem);
+  const { addItem: addWishlist, removeItem: removeWishlist, isInWishlist } = useWishlistStore();
+  const inWishlist = isInWishlist(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, product.moq);
+  };
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inWishlist) {
+      removeWishlist(product.id);
+    } else {
+      addWishlist(product);
+    }
   };
 
   return (
@@ -35,13 +47,26 @@ export function ProductCard({ product }: ProductCardProps) {
             sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             loading="lazy"
           />
+          {/* Wishlist Button */}
+          <button
+            onClick={handleWishlist}
+            className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 p-1.5 sm:p-2 rounded-full bg-white/80 hover:bg-white transition-colors z-10"
+            aria-label={inWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة"}
+          >
+            <Heart
+              className={`h-4 w-4 sm:h-5 sm:w-5 transition-colors ${
+                inWishlist ? "fill-red-500 text-red-500" : "text-gray-600"
+              }`}
+            />
+          </button>
+
           {product.freeShipping && (
             <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-green-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
               شحن مجاني
             </div>
           )}
           {product.readyToShip && (
-            <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 bg-blue-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
+            <div className="absolute top-8 right-1.5 sm:top-10 sm:right-2 bg-blue-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
               جاهز للشحن
             </div>
           )}
