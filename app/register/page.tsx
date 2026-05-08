@@ -10,6 +10,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useUserStore } from "@/lib/store";
+import { validateEmail, validatePassword, validateName, validatePhone, sanitizeInput, validateForm } from "@/lib/validation";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { Eye, EyeOff, Mail, Lock, User, Building, Phone } from "lucide-react";
 
 export default function RegisterPage() {
@@ -17,6 +19,7 @@ export default function RegisterPage() {
   const login = useUserStore((s) => s.login);
   const [showPassword, setShowPassword] = useState(false);
   const [userType, setUserType] = useState<"buyer" | "seller">("buyer");
+  const [errors, setErrors] = useState<string[]>([]);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -25,19 +28,57 @@ export default function RegisterPage() {
     company: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(
-      {
-        id: "user-" + Date.now(),
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        companyName: form.company,
-      },
-      userType
-    );
-    router.push("/");
+    setErrors([]);
+
+    // Rate limiting
+    if (!checkRateLimit('register', 3, 300000)) {
+      setErrors(["محاولات كثيرة. يرجى الانتظار"]);
+      return;
+    }
+
+    // Validate all fields
+    const validation = validateForm([
+      validateName(form.name),
+      validateEmail(form.email),
+      validatePassword(form.password),
+      validatePhone(form.phone),
+    ]);
+
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      return;
+    }
+
+    // Sanitize inputs
+    const sanitizedName = sanitizeInput(form.name);
+    const sanitizedEmail = sanitizeInput(form.email);
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: sanitizedName,
+          email: sanitizedEmail,
+          password: form.password,
+          phone: form.phone,
+          company: form.company,
+          type: userType,
+        }),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        login(data.data.user, userType);
+        router.push("/");
+      } else {
+        setErrors([data.error || "خطأ في إنشاء الحساب"]);
+      }
+    } catch {
+      setErrors(["خطأ في الاتصال بالخادم"]);
+    }
   };
 
   return (
@@ -76,6 +117,13 @@ export default function RegisterPage() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+              {errors.length > 0 && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                  {errors.map((err, i) => (
+                    <p key={i} className="text-red-600 text-sm">{err}</p>
+                  ))}
+                </div>
+              )}
                 <div>
                   <Label htmlFor="name">الاسم الكامل</Label>
                   <div className="relative mt-1">

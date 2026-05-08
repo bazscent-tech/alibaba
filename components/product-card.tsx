@@ -23,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem(product, product.moq);
+    addItem(product, 1);
     showToast("cart", "تمت إضافة المنتج للسلة");
   };
 

@@ -2,6 +2,13 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Globe, Users, Shield, Truck, Award, Target } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'شبام جملة',
+  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+};
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-muted/30">

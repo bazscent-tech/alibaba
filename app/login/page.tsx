@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/lib/store";
+import { validateEmail, validatePassword, validateName, validatePhone, sanitizeInput } from "@/lib/validation";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -65,6 +67,11 @@ export default function LoginPage() {
   };
 
   const handleRegister = async (e: React.FormEvent) => {
+    // Rate limiting
+    if (!checkRateLimit('register', 3, 300000)) {
+      setError("محاولات كثيرة. يرجى الانتظار 5 دقائق");
+      return;
+    }
     e.preventDefault();
     setIsLoading(true);
 

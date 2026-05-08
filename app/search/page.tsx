@@ -7,6 +7,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ProductCard } from "@/components/product-card";
 import { searchProducts, categories } from "@/lib/data";
+import { debounce } from "@/lib/api-helpers";
 import { ChevronLeft, Search as SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,18 +16,30 @@ function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [searchInput, setSearchInput] = useState(query);
+  const [liveResults, setLiveResults] = useState<typeof results>([]);
 
   const results = useMemo(() => {
     if (!query) return [];
     return searchProducts(query);
   }, [query]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSearch = useCallback((e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (searchInput.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchInput)}`;
     }
-  };
+  }, [searchInput]);
+
+  useEffect(() => {
+    const debouncedSearch = debounce(() => {
+      if (searchInput.length >= 2) {
+        setLiveResults(searchProducts(searchInput));
+      } else {
+        setLiveResults([]);
+      }
+    }, 300);
+    debouncedSearch();
+  }, [searchInput]);
 
   return (
     <main className="container-responsive animate-fade-in py-6">

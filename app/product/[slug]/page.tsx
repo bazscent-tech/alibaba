@@ -14,7 +14,8 @@ import {
   getProductsByCategory,
   categories,
 } from "@/lib/data";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
+import { showToast } from "@/components/toast-notification";
 import {
   ChevronLeft,
   Star,
@@ -50,6 +51,7 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(product?.moq || 1);
   const addItem = useCartStore((state) => state.addItem);
+  const { addItem: addWishlist, removeItem: removeWishlist, isInWishlist } = useWishlistStore();
 
   if (!product) {
     return (
@@ -84,6 +86,7 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     addItem(product, quantity);
+    showToast("cart", `تمت إضافة ${quantity} ${product.unit} للسلة`);
   };
 
   const incrementQuantity = () => {
@@ -286,7 +289,23 @@ export default function ProductPage() {
             <div className="flex flex-wrap gap-3 mb-6">
               <Button
                 size="lg"
-                className="flex-1 bg-primary hover:bg-primary/90"
+                variant="outline"
+                className={isInWishlist(product.id) ? "text-red-500 border-red-200" : ""}
+                onClick={() => {
+                  if (isInWishlist(product.id)) {
+                    removeWishlist(product.id);
+                    showToast("wishlist", "تمت الإزالة من المفضلة");
+                  } else {
+                    addWishlist(product);
+                    showToast("wishlist", "تمت الإضافة للمفضلة");
+                  }
+                }}
+              >
+                <Heart className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-red-500 text-red-500" : ""}`} />
+              </Button>
+              <Button
+                size="lg"
+                className="flex-1 bg-primary hover:bg-primary/90 press-effect"
                 onClick={handleAddToCart}
               >
                 <ShoppingCart className="h-5 w-5 ml-2" />

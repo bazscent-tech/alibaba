@@ -6,6 +6,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { suppliers } from "@/lib/data";
 import { CheckCircle, MapPin, Star, MessageCircle, Globe } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'شبام جملة',
+  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+};
+
 export default function SuppliersPage() {
   return (
     <div className="min-h-screen bg-muted/30">

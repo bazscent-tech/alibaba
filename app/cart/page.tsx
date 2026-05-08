@@ -29,6 +29,42 @@ export default function CartPage() {
   const clearCart = useCartStore((state) => state.clearCart);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
   const [couponCode, setCouponCode] = useState("");
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setOrderPlaced(true);
+    clearCart();
+    setIsCheckingOut(false);
+  };
+
+  if (orderPlaced) {
+    return (
+      <div className="min-h-screen bg-muted/30">
+        <Header />
+        <main className="container-responsive py-16 text-center animate-fade-in">
+          <div className="max-w-md mx-auto">
+            <div className="bg-green-50 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+              <svg className="h-12 w-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold mb-2">تم الطلب بنجاح!</h1>
+            <p className="text-gray-600 mb-6">سيتم إرسال تفقيبل الطلب إلى بريدك الإلكتروني</p>
+            <div className="flex gap-3 justify-center">
+              <Link href="/orders"><Button>متابعة الطلب</Button></Link>
+              <Link href="/"><Button variant="outline">العودة للتسوق</Button></Link>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const subtotal = getTotalPrice();
   const shipping = subtotal > 500 ? 0 : 25;
@@ -232,7 +268,7 @@ export default function CartPage() {
                   <Button variant="outline">تطبيق</Button>
                 </div>
 
-                <Button className="w-full" size="lg">
+                <Button className="w-full press-effect" size="lg" onClick={handleCheckout} disabled={isCheckingOut}>
                   <CreditCard className="w-4 h-4 ml-2" />
                   إتمام الطلب
                 </Button>

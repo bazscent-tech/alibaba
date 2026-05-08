@@ -95,6 +95,13 @@ const faqs = [
   },
 ];
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'شبام جملة',
+  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+};
+
 export default function HelpPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
