@@ -2,28 +2,27 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LayoutGrid, Search, Heart, ShoppingBag } from "lucide-react";
-import { useCartStore, useWishlistStore } from "@/lib/store";
+import { Home, LayoutGrid, Compass, ShoppingBag, UserRound } from "lucide-react";
+import { useCartStore } from "@/lib/store";
 
 const items = [
   { href: "/", label: "الرئيسية", icon: Home },
   { href: "/categories", label: "الأقسام", icon: LayoutGrid },
-  { href: "/search", label: "البحث", icon: Search },
-  { href: "/wishlist", label: "المفضلة", icon: Heart, badge: "wishlist" },
+  { href: "/search", label: "استكشاف", icon: Compass },
   { href: "/cart", label: "السلة", icon: ShoppingBag, badge: "cart" },
+  { href: "/account", label: "حسابي", icon: UserRound },
 ];
 
 export function BottomNav() {
   const pathname = usePathname();
   const cartItems = useCartStore((state) => state.getTotalItems());
-  const wishlistItems = useWishlistStore((state) => state.items.length);
 
   return (
     <nav className="bottom-nav" aria-label="التنقل الرئيسي">
       <div className="bottom-nav__inner">
         {items.map(({ href, label, icon: Icon, badge }) => {
           const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
-          const count = badge === "cart" ? cartItems : wishlistItems;
+          const count = badge === "cart" ? cartItems : 0;
           return (
             <Link
               key={href}

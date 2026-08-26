@@ -49,48 +49,48 @@ export interface Product {
 export const suppliers: Supplier[] = [
   {
     id: "sup-1",
-    name: "شركة الفجر للتجارة الدولية",
-    country: "الصين",
+    name: "مؤسسة تهامة للتوريد",
+    country: "اليمن",
     yearsInBusiness: 8,
     verified: true,
     responseRate: 98
   },
   {
     id: "sup-2",
-    name: "مصنع النور للإلكترونيات",
-    country: "الصين",
+    name: "شركة صنعاء للإلكترونيات",
+    country: "اليمن",
     yearsInBusiness: 12,
     verified: true,
     responseRate: 95
   },
   {
     id: "sup-3",
-    name: "شركة الأمل للآلات الصناعية",
-    country: "الصين",
+    name: "مؤسسة عدن للآلات",
+    country: "اليمن",
     yearsInBusiness: 15,
     verified: true,
     responseRate: 99
   },
   {
     id: "sup-4",
-    name: "مجموعة السلام للملابس",
-    country: "الصين",
+    name: "مصنع تعز للملابس",
+    country: "اليمن",
     yearsInBusiness: 6,
     verified: true,
     responseRate: 92
   },
   {
     id: "sup-5",
-    name: "شركة الرياض للمعدات الطبية",
-    country: "الصين",
+    name: "شركة حضرموت للمستلزمات الطبية",
+    country: "اليمن",
     yearsInBusiness: 10,
     verified: true,
     responseRate: 97
   },
   {
     id: "sup-6",
-    name: "مصنع الخليج للأثاث",
-    country: "الصين",
+    name: "مؤسسة إب للأثاث",
+    country: "اليمن",
     yearsInBusiness: 9,
     verified: false,
     responseRate: 88

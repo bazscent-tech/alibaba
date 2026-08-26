@@ -163,7 +163,7 @@ export default function RegisterPage() {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="+966 5x xxx xxxx"
+                      placeholder="+967 7x xxx xxxx"
                       className="pr-10 focus-ring"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}

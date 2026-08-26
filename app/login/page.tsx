@@ -221,7 +221,7 @@ export default function LoginPage() {
                         <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <Input
                           id="reg-phone"
-                          placeholder="+966 5XX XXX XXX"
+                          placeholder="+967 7X XXX XXXX"
                           className="pr-10 focus-ring"
                           value={registerData.phone}
                           onChange={(e) =>
@@ -292,18 +292,7 @@ export default function LoginPage() {
                           }
                         >
                           <option value="">اختر الدولة</option>
-                          <option value="SA">السعودية</option>
-                          <option value="AE">الإمارات</option>
-                          <option value="EG">مصر</option>
-                          <option value="JO">الأردن</option>
-                          <option value="KW">الكويت</option>
-                          <option value="QA">قطر</option>
-                          <option value="BH">البحرين</option>
-                          <option value="OM">عُمان</option>
-                          <option value="MA">المغرب</option>
-                          <option value="DZ">الجزائر</option>
-                          <option value="TN">تونس</option>
-                          <option value="IQ">العراق</option>
+                          <option value="YE">اليمن</option>
                         </select>
                       </div>
                     </div>

@@ -214,10 +214,10 @@ export default function HelpPage() {
                 </div>
                 <h3 className="font-bold mb-2">اتصل بنا</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  متاح 24/7 لخدمتك
+                  فريقنا قريب منك لخدمتك
                 </p>
                 <Button variant="outline" className="w-full">
-                  +966 11 XXX XXXX
+                  +967 1XX XXX XXX
                 </Button>
               </Card>
 

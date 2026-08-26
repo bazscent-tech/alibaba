@@ -38,24 +38,29 @@ const steps = [
   { id: 3, title: "تفاصيل النشاط", icon: Briefcase },
 ];
 
-const countries = [
-  "المملكة العربية السعودية",
-  "الإمارات العربية المتحدة",
-  "مصر",
-  "الأردن",
-  "الكويت",
-  "قطر",
-  "البحرين",
-  "عمان",
-  "المغرب",
-  "تونس",
-  "الجزائر",
-  "العراق",
-  "لبنان",
-  "فلسطين",
-  "اليمن",
-  "ليبيا",
-  "السودان",
+const countries = ["اليمن"];
+
+const yemenGovernorates = [
+  "أمانة العاصمة صنعاء",
+  "عدن",
+  "تعز",
+  "الحديدة",
+  "إب",
+  "حضرموت",
+  "ذمار",
+  "مأرب",
+  "عمران",
+  "حجة",
+  "صعدة",
+  "لحج",
+  "أبين",
+  "شبوة",
+  "البيضاء",
+  "المحويت",
+  "ريمة",
+  "الضالع",
+  "الجوف",
+  "سقطرى",
 ];
 
 const businessTypes = [
@@ -392,13 +397,19 @@ export default function SellPage() {
                     </div>
                     <div>
                       <Label htmlFor="city">المدينة *</Label>
-                      <Input
-                        id="city"
+                      <Select
                         value={formData.city}
-                        onChange={(e) => updateField("city", e.target.value)}
-                        placeholder="أدخل اسم المدينة"
-                        className={errors.city ? "border-red-500" : ""}
-                      />
+                        onValueChange={(value) => updateField("city", value)}
+                      >
+                        <SelectTrigger className={errors.city ? "border-red-500" : ""}>
+                          <SelectValue placeholder="اختر المحافظة" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {yemenGovernorates.map((governorate) => (
+                            <SelectItem key={governorate} value={governorate}>{governorate}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       {errors.city && (
                         <p className="text-red-500 text-sm mt-1">
                           {errors.city}
@@ -466,7 +477,7 @@ export default function SellPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
-                        placeholder="+966 50 000 0000"
+                        placeholder="+967 7X XXX XXXX"
                         dir="ltr"
                         className={errors.phone ? "border-red-500" : ""}
                       />
@@ -485,7 +496,7 @@ export default function SellPage() {
                       type="tel"
                       value={formData.whatsapp}
                       onChange={(e) => updateField("whatsapp", e.target.value)}
-                      placeholder="+966 50 000 0000"
+                      placeholder="+967 7X XXX XXXX"
                       dir="ltr"
                     />
                   </div>

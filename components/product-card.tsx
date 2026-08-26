@@ -62,7 +62,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <span>{supplier?.name || "مورد موثوق"}</span>
         </div>
         <Link href={`/product/${product.slug}`} className="product-card__title">{product.name}</Link>
-        <div className="product-card__rating"><span className="rating-stars"><Star className="h-3.5 w-3.5" fill="currentColor" /> {product.rating}</span><span>{product.orders.toLocaleString("ar-SA")} طلب</span></div>
+        <div className="product-card__rating"><span className="rating-stars"><Star className="h-3.5 w-3.5" fill="currentColor" /> {product.rating}</span><span>{product.orders.toLocaleString("ar-YE")} طلب</span></div>
         <div className="product-card__footer">
           <div><span className="product-card__price">${product.priceMin.toFixed(2)}</span><span className="product-card__unit"> / {product.unit}</span><span className="product-card__range">حتى ${product.priceMax.toFixed(2)}</span></div>
           <button className="product-card__add" onClick={handleAddToCart} aria-label={`إضافة ${product.name} للسلة`}><ShoppingCart className="h-4 w-4" /></button>

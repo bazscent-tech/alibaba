@@ -16,7 +16,7 @@ export function errorResponse(error: string): ApiResponse {
 }
 
 export function formatPrice(price: number, currency: string = 'USD'): string {
-  return new Intl.NumberFormat('ar-SA', {
+  return new Intl.NumberFormat('ar-YE', {
     style: 'currency',
     currency,
     minimumFractionDigits: 2,
@@ -24,7 +24,7 @@ export function formatPrice(price: number, currency: string = 'USD'): string {
 }
 
 export function formatDate(date: Date | string): string {
-  return new Intl.DateTimeFormat('ar-SA', {
+  return new Intl.DateTimeFormat('ar-YE', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
