@@ -5,6 +5,7 @@ import './globals.css'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { OfflineIndicator } from '@/components/offline-indicator'
 import { ToastContainer } from '@/components/toast-notification'
+import { BottomNav } from '@/components/bottom-nav'
 
 const cairo = Cairo({ 
   subsets: ['arabic', 'latin'],
@@ -15,7 +16,7 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: 'شبام جملة - منصة التجارة الإلكترونية B2B',
-  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات - موردون موثوقون، أسعار الجملة، شحن عالمي',
+  description: 'شبام جملة - سوق جملة عربي لاكتشاف المنتجات والموردين المناسبين لنمو الأعمال.',
   generator: 'v0.app',
   manifest: '/manifest.json',
   icons: {
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'شبام جملة - منصة التجارة الإلكترونية B2B',
-    description: 'أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+    description: 'سوق جملة عربي لاكتشاف المنتجات والموردين وفرص النمو.',
     type: 'website',
     locale: 'ar_SA',
     siteName: 'شبام جملة',
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'شبام جملة',
-    description: 'أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+    description: 'سوق جملة عربي لاكتشاف المنتجات والموردين وفرص النمو.',
   },
   other: {
     'mobile-web-app-capable': 'yes',
@@ -79,7 +80,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.unsplash.com" />
       </head>
       <body className={`${cairo.className} font-sans antialiased overscroll-none smooth-scroll`}>
-        {children}
+        <div className="app-frame">{children}</div>
+        <BottomNav />
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <ScrollToTop />
         <ToastContainer />

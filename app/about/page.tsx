@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'شبام جملة',
-  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+  description: 'شبام جملة - مساحة عربية لاكتشاف فرص الجملة.',
 };
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
           <div className="container-responsive text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">عن شبام جملة</h1>
             <p className="text-sm sm:text-base opacity-90 max-w-2xl mx-auto">
-              أكبر منصة عربية للتجارة الإلكترونية بين الشركات — نربط المشترين بالموردين الموثوقين حول العالم
+              مساحة عربية تجمع المشترين والموردين حول فرص جملة أفضل
             </p>
           </div>
         </section>
@@ -49,7 +49,7 @@ export default function AboutPage() {
               {[
                 { icon: Target, title: "سهولة التجارة", desc: "نجعل عملية الشراء بالجملة سهلة وسريعة وآمنة للجميع" },
                 { icon: Shield, title: "الجودة والثقة", desc: "نتحقق من جميع الموردين لضمان حصولك على منتجات عالية الجودة" },
-                { icon: Globe, title: "تغطية عالمية", desc: "نصل إلى أكثر من 200 دولة حول العالم مع شحن سريع وموثوق" },
+                { icon: Globe, title: "فرص أوسع", desc: "اكتشف فئات جديدة وموردين يناسبون نمو نشاطك" },
               ].map((item) => (
                 <div key={item.title} className="text-center p-6">
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">

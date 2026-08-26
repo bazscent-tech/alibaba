@@ -10,7 +10,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'شبام جملة',
-  description: 'شبام جملة - أكبر منصة عربية للتجارة الإلكترونية بين الشركات',
+  description: 'دليل الموردين في شبام جملة - اكتشف شركاء نمو موثوقين.',
 };
 
 export default function SuppliersPage() {

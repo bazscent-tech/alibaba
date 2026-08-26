@@ -25,7 +25,6 @@ export default function PrivacyPage() {
                 <li>المعلومات الشخصية: الاسم، البريد الإلكتروني، رقم الهاتف</li>
                 <li>معلومات الحساب: اسم الشركة، العنوان، تفضيلات التسوق</li>
                 <li>معلومات الاستخدام: الصفحات التي تزورها، المنتجات التي تتصفحها</li>
-                <li>معلومات الدفع: نتعامل مع بيانات الدفع عبر بوابات دفع آمنة ومعتمدة</li>
               </ul>
             </section>
 
@@ -67,7 +66,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-bold text-gray-900 mb-2">7. التواصل</h2>
-              <p>لأي استفسارات regarding privacy policy, يرجى التواصل معنا على: support@shabam.com</p>
+              <p>لأي استفسار حول الخصوصية، يمكنك مراجعة مركز المساعدة من خلال التنقل الرئيسي.</p>
             </section>
 
             <p className="text-xs text-gray-400 mt-8">آخر تحديث: مايو 2026</p>

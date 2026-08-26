@@ -186,7 +186,7 @@ export default function ShippingPage() {
                 </div>
                 <h3 className="font-bold mb-2">شحن عالمي</h3>
                 <p className="text-sm text-muted-foreground">
-                  نشحن إلى أكثر من 200 دولة حول العالم
+                  خيارات شحن مرنة من المورد إلى عنوانك
                 </p>
               </Card>
 
