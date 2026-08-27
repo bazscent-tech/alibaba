@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { ADMIN_PASSWORD } from "@/lib/admin-config";
+import { ADMIN_PASSWORD_HASH } from "@/lib/admin-config";
 
 export type NetworkStoreStatus = "pending" | "approved" | "suspended";
 export type NetworkOrderStatus = "new" | "processing" | "shipped" | "completed";
@@ -33,7 +33,7 @@ function clone<T>(value: T): T { return JSON.parse(JSON.stringify(value)) as T; 
 function ensureFile() { const dir = path.dirname(filePath); if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, JSON.stringify(seedState, null, 2)); }
 export function isValidAdminToken(value: string | null) {
   if (!value?.startsWith("Bearer ")) return false;
-  const expected = createHash("sha256").update(`${ADMIN_PASSWORD}|shibam-admin-session`).digest("hex");
+  const expected = createHash("sha256").update(`${ADMIN_PASSWORD_HASH}|shibam-admin-session`).digest("hex");
   return value.slice(7) === expected;
 }
 
