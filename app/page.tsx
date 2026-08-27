@@ -1,11 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpLeft, BarChart3, ChevronLeft, Package, Search, Sparkles, Store, Zap } from "lucide-react";
+import { ArrowLeft, BarChart3, Package, Search, Sparkles, Store, Zap } from "lucide-react";
 import { Header } from "@/components/header";
 import { ProductCard } from "@/components/product-card";
-import { categories, getFeaturedProducts, getTopRatedProducts } from "@/lib/data";
-
-const categoryIcons = ["◈", "◌", "✦", "⌂", "♡", "◒", "◎", "◉", "▣", "⌁", "▤", "✧"];
+import { getFeaturedProducts, getTopRatedProducts } from "@/lib/data";
 
 export default function HomePage() {
   const featuredProducts = getFeaturedProducts();
@@ -24,7 +22,6 @@ export default function HomePage() {
             <Link href="/categories" className="hero-cta__primary">ابدأ الاستكشاف <ArrowLeft className="h-4 w-4" /></Link>
             <Link href="/sell" className="hero-cta__secondary">أضف متجرك <Store className="h-4 w-4" /></Link>
           </div>
-          <div className="hero-numbers"><div><strong>50K+</strong><span>منتج متاح</span></div><div><strong>4.8/5</strong><span>تقييم المشترين</span></div><div><strong>24/7</strong><span>دعم الأعمال</span></div></div>
         </div>
         <div className="home-hero__visual">
           <Image src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85" alt="منتجات متنوعة للتجارة بالجملة" fill priority className="object-cover" sizes="(max-width: 768px) 100vw, 54vw" />
@@ -32,19 +29,6 @@ export default function HomePage() {
           <div className="hero-floating hero-floating--top"><span className="hero-floating__icon"><Zap className="h-4 w-4" /></span><div><strong>عروض ذكية</strong><small>خصومات للمشترين</small></div></div>
           <div className="hero-floating hero-floating--bottom"><span className="hero-floating__avatar">ش</span><div><strong>مصنع النور</strong><small>مورد موثق منذ 12 سنة</small></div><span className="hero-floating__check">✓</span></div>
           <span className="hero-visual-label">DISCOVER<br /><strong>YOUR NEXT<br />BESTSELLER</strong></span>
-        </div>
-      </section>
-
-      <section className="shell quick-categories" aria-label="تصفح الأقسام">
-        <div className="section-heading"><div><p>كل ما يحتاجه نشاطك</p><h2>تصفح حسب القسم</h2></div><Link href="/categories">كل الأقسام <ArrowLeft className="inline h-3.5 w-3.5" /></Link></div>
-        <div className="quick-categories__rail hide-scrollbar">
-          {categories.map((category, index) => (
-            <Link href={`/category/${category.slug}`} className="category-pill" key={category.id}>
-              <span className={`category-pill__icon category-pill__icon--${index % 6}`}>{categoryIcons[index]}</span>
-              <span>{category.name}</span>
-              <small>{category.subcategories.length} فئات</small>
-            </Link>
-          ))}
         </div>
       </section>
 
