@@ -20,7 +20,7 @@ export default function HomePage() {
           <p>اكتشف منتجات مميزة من موردين موثوقين، بأسعار مصممة لنمو أعمالك.</p>
           <div className="hero-cta">
             <Link href="/categories" className="hero-cta__primary">ابدأ الاستكشاف <ArrowLeft className="h-4 w-4" /></Link>
-            <Link href="/sell" className="hero-cta__secondary">أضف متجرك <Store className="h-4 w-4" /></Link>
+            <Link href="/account" className="hero-cta__secondary">سجّل كتاجر <Store className="h-4 w-4" /></Link>
           </div>
         </div>
         <div className="home-hero__visual">
@@ -55,7 +55,7 @@ export default function HomePage() {
       </section>
 
       <section className="shell seller-banner">
-        <div className="seller-banner__copy"><span className="hero-kicker"><Store className="h-4 w-4" /> مساحة للموردين</span><h2>منتجك القادم قد يكون<br /><em>فرصة أحدهم.</em></h2><p>انضم إلى شبكة الموردين واعرض منتجاتك أمام مشترين يبحثون عن الأفضل.</p><Link href="/sell" className="hero-cta__secondary seller-banner__button">ابدأ البيع مجانًا <ArrowLeft className="h-4 w-4" /></Link></div>
+        <div className="seller-banner__copy"><span className="hero-kicker"><Store className="h-4 w-4" /> مساحة للموردين</span><h2>منتجك القادم قد يكون<br /><em>فرصة أحدهم.</em></h2><p>انضم إلى شبكة الموردين واعرض منتجاتك أمام مشترين يبحثون عن الأفضل.</p><Link href="/account" className="hero-cta__secondary seller-banner__button">سجّل متجرك من حسابك <ArrowLeft className="h-4 w-4" /></Link></div>
         <div className="seller-banner__art"><Image src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1000&q=85" alt="صاحب عمل يدير متجره" fill className="object-cover" sizes="(max-width: 768px) 100vw, 48vw" /><div className="seller-banner__orb" /></div>
       </section>
 

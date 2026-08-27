@@ -11,7 +11,6 @@ export async function POST(request: Request) {
     const email = normalize(body.email).toLowerCase();
     const phone = normalize(body.phone);
     const company = normalize(body.company);
-    const type = body.type === "seller" ? "seller" : "buyer";
 
     if (name.length < 2 || name.length > 80) {
       return NextResponse.json({ success: false, error: "يرجى إدخال اسم صحيح." }, { status: 400 });

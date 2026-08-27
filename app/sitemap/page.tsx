@@ -33,13 +33,14 @@ export default function SitemapPage() {
         { label: "حسابي", href: "/account" },
         { label: "طلباتي", href: "/orders" },
         { label: "سلة التسوق", href: "/cart" },
+        { label: "مراسلاتي", href: "/messages" },
       ],
     },
     {
       title: "البائعين",
       icon: FileText,
       links: [
-        { label: "التسجيل كبائع", href: "/sell" },
+        { label: "تسجيل كتاجر من الحساب", href: "/account" },
         { label: "دليل الموردين", href: "/suppliers" },
       ],
     },

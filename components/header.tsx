@@ -13,6 +13,9 @@ export function Header() {
   const cartItems = useCartStore((state) => state.getTotalItems());
   const wishlistItems = useWishlistStore((state) => state.items.length);
   const { isLoggedIn, user, logout } = useUserStore();
+  const handleLogout = () => {
+    void fetch("/api/auth/google/logout/", { method: "POST", credentials: "include" }).finally(logout);
+  };
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
@@ -80,7 +83,7 @@ export function Header() {
                   <>
                     <DropdownMenuItem asChild><Link href="/account">حسابي</Link></DropdownMenuItem>
                     <DropdownMenuItem asChild><Link href="/orders">طلباتي</Link></DropdownMenuItem>
-                    <DropdownMenuItem onClick={logout}>تسجيل الخروج</DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleLogout}>تسجيل الخروج</DropdownMenuItem>
                   </>
                 ) : (
                   <>
@@ -90,7 +93,7 @@ export function Header() {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link href="/sell" className="header-sell">ابدأ البيع <span>↗</span></Link>
+            <Link href="/account" className="header-sell">سجّل كتاجر <span>↗</span></Link>
           </div>
         </div>
       </div>

@@ -25,9 +25,11 @@ interface WishlistState {
   clearWishlist: () => void;
 }
 
+export type AccountRole = 'user' | 'seller';
+
 interface UserState {
   isLoggedIn: boolean;
-  userType: 'buyer' | 'seller' | null;
+  userType: AccountRole | null;
   user: {
     id: string;
     name: string;
@@ -36,7 +38,8 @@ interface UserState {
     phone?: string;
     country?: string;
   } | null;
-  login: (user: UserState['user'], type: 'buyer' | 'seller') => void;
+  login: (user: UserState['user'], type?: AccountRole) => void;
+  becomeSeller: (companyName: string, phone?: string) => void;
   logout: () => void;
 }
 
@@ -119,7 +122,12 @@ export const useUserStore = create<UserState>()(
       isLoggedIn: false,
       userType: null,
       user: null,
-      login: (user, type) => set({ isLoggedIn: true, user, userType: type }),
+      login: (user, type = 'user') => set({ isLoggedIn: true, user, userType: type }),
+      becomeSeller: (companyName, phone) => set((state) => ({
+        isLoggedIn: true,
+        userType: 'seller',
+        user: state.user ? { ...state.user, companyName, ...(phone ? { phone } : {}) } : state.user,
+      })),
       logout: () => set({ isLoggedIn: false, user: null, userType: null })
     }),
     { name: 'shabam-user' }

@@ -157,10 +157,10 @@ export function QuickViewModal({
                 <ShoppingCart className="w-4 h-4" />
                 إضافة للسلة
               </Button>
-              <Button variant="outline" className="flex-1 gap-2">
+              <Link href={`/messages?supplier=${encodeURIComponent(supplier?.name || "التاجر")}&product=${encodeURIComponent(product.name)}`} onClick={onClose} className="inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-muted flex-1">
                 <MessageSquare className="w-4 h-4" />
                 تواصل مع المورد
-              </Button>
+              </Link>
             </div>
 
             <div className="flex gap-2">
@@ -192,7 +192,7 @@ export function QuickViewModal({
 
             {/* View Full Details */}
             <Link
-              href={`/product/${product.id}`}
+              href={`/product/${product.slug}`}
               className="block text-center text-primary hover:underline text-sm"
               onClick={onClose}
             >
