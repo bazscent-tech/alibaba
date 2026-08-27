@@ -593,3 +593,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .admin-inline-search { width: 135px; }
   .admin-footer { margin-bottom: 1rem; }
 }
+/* Final navigation balance: top navigation on desktop, app navigation on mobile. */
+.bottom-nav { display: none; }
+@media (max-width: 767px) {
+  .bottom-nav { display: block; right: 50%; bottom: 10px; width: min(calc(100% - 20px), 520px); padding: .28rem; border-radius: 19px; }
+  .bottom-nav__item { min-height: 48px; border-radius: 14px; font-size: .56rem; }
+  .bottom-nav__badge { top: -6px; left: -8px; }
+  .header-actions { display: none; }
+  .site-header { position: sticky; }
+  body { padding-bottom: 78px; }
+  .home-bottom-space { height: .25rem; }
+}
+@media (min-width: 768px) {
+  body { padding-bottom: 0; }
+}
+.admin-page .bottom-nav, .admin-login-page ~ .bottom-nav { display: none; }

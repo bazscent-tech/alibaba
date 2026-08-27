@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'شبام جملة - منصة التجارة الإلكترونية B2B',
     description: 'سوق جملة عربي لاكتشاف المنتجات والموردين وفرص النمو.',
     type: 'website',
-    locale: 'ar_SA',
+    locale: 'ar_YE',
     siteName: 'شبام جملة',
   },
   twitter: {

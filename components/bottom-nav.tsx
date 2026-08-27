@@ -17,6 +17,8 @@ export function BottomNav() {
   const pathname = usePathname();
   const cartItems = useCartStore((state) => state.getTotalItems());
 
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <nav className="bottom-nav" aria-label="التنقل الرئيسي">
       <div className="bottom-nav__inner">
