@@ -97,6 +97,15 @@
   ],
   "orders": [
     {
+      "buyer": "مشتري تجريبي - صنعاء",
+      "storeId": "store-sanaa",
+      "items": 50,
+      "total": 450,
+      "id": "SHP-2026-005",
+      "status": "new",
+      "createdAt": "2026-08-27"
+    },
+    {
       "id": "SHP-2026-004",
       "buyer": "بقالة حضرموت",
       "storeId": "store-demo-hadramout",
