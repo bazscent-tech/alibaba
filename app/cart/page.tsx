@@ -9,6 +9,7 @@ import { getSupplierById } from "@/lib/data";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
+import { showToast } from "@/components/toast-notification";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -31,11 +32,26 @@ export default function CartPage() {
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
   const user = useUserStore((state) => state.user);
   const [couponCode, setCouponCode] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [discount, setDiscount] = useState(0);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [placedOrderId, setPlacedOrderId] = useState("");
 
   
+  const handleApplyCoupon = () => {
+    const code = couponCode.trim().toUpperCase();
+    if (code === "SHIBAM10") {
+      setCouponApplied(true);
+      setDiscount(Math.min(getTotalPrice() * 0.1, 100));
+      showToast("success", "تم تطبيق خصم 10% على طلبك");
+      return;
+    }
+    setCouponApplied(false);
+    setDiscount(0);
+    showToast("error", "كود الخصم غير صالح أو منتهي");
+  };
+
   const handleCheckout = async () => {
     if (!items.length) return;
     setIsCheckingOut(true);
@@ -79,7 +95,7 @@ export default function CartPage() {
 
   const subtotal = getTotalPrice();
   const shipping = subtotal > 500 ? 0 : 25;
-  const total = subtotal + shipping;
+  const total = Math.max(0, subtotal + shipping - discount);
 
   if (items.length === 0) {
     return (
@@ -256,6 +272,12 @@ export default function CartPage() {
                     )}
                   </span>
                 </div>
+                {couponApplied && (
+                  <div className="flex justify-between text-green-600">
+                    <span>خصم SHIBAM10</span>
+                    <span>−${discount.toFixed(2)}</span>
+                  </div>
+                )}
                 {subtotal < 500 && (
                   <p className="text-xs text-muted-foreground bg-muted p-2 rounded">
                     أضف ${(500 - subtotal).toFixed(2)} للحصول على شحن مجاني
@@ -276,7 +298,7 @@ export default function CartPage() {
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                   />
-                  <Button variant="outline">تطبيق</Button>
+                  <Button variant="outline" onClick={handleApplyCoupon} disabled={!couponCode.trim()}>تطبيق</Button>
                 </div>
 
                 <Button className="w-full press-effect" size="lg" onClick={handleCheckout} disabled={isCheckingOut}>

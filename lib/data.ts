@@ -182,7 +182,7 @@ export const categories: Category[] = [
     name: "الرياضة والترفيه",
     slug: "sports",
     icon: "Dumbbell",
-    image: "https://images.unsplash.com/photo-1461896836934- voices?w=400",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400",
     subcategories: [
       { id: "sub-7-1", name: "معدات اللياقة", slug: "fitness-equipment", categoryId: "cat-7" },
       { id: "sub-7-2", name: "الرياضات الخارجية", slug: "outdoor-sports", categoryId: "cat-7" },

@@ -36,8 +36,7 @@ export function Header() {
                 <Globe2 className="h-3.5 w-3.5" /> العربية <ChevronDown className="h-3 w-3" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>العربية</DropdownMenuItem>
-                <DropdownMenuItem>English</DropdownMenuItem>
+                <DropdownMenuItem>العربية (الحالية)</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

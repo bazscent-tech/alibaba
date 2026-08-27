@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { getProductBySlug, getSupplierById } from "@/lib/data";
+import { categories, getProductBySlug, getSupplierById } from "@/lib/data";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 import { showToast } from "@/components/toast-notification";
 import { ShoppingCart, Heart, Star, Truck, ShieldCheck, ChevronLeft, Minus, Plus, CheckCircle, MessageCircle, PackageCheck, MapPin } from "lucide-react";
@@ -16,6 +16,7 @@ export default function ProductContent() {
   const slug = params.slug as string;
   const product = getProductBySlug(slug);
   const supplier = product ? getSupplierById(product.supplierId) : null;
+  const category = product ? categories.find((item) => item.id === product.categoryId) : null;
   const addItem = useCartStore((state) => state.addItem);
   const { addItem: addWishlist, removeItem: removeWishlist, isInWishlist } = useWishlistStore();
   const [selectedImage, setSelectedImage] = useState(0);
@@ -37,7 +38,7 @@ export default function ProductContent() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="shell product-page animate-fade-in">
-        <div className="product-breadcrumb"><Link href="/">الرئيسية</Link><ChevronLeft className="h-3.5 w-3.5" /><Link href={`/category/${product.categoryId}`}>المنتجات</Link><ChevronLeft className="h-3.5 w-3.5" /><span>{product.name}</span></div>
+        <div className="product-breadcrumb"><Link href="/">الرئيسية</Link><ChevronLeft className="h-3.5 w-3.5" /><Link href={category ? `/category/${category.slug}` : "/categories"}>{category?.name || "المنتجات"}</Link><ChevronLeft className="h-3.5 w-3.5" /><span>{product.name}</span></div>
         <div className="product-layout">
           <section className="product-gallery" aria-label="صور المنتج">
             <div className="product-gallery__main"><Image src={images[selectedImage]} alt={product.name} fill priority className="object-cover" sizes="(max-width: 768px) 100vw, 55vw" /><button className={`product-gallery__favorite ${inWishlist ? "is-active" : ""}`} onClick={toggleWishlist} aria-label={inWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة"}><Heart className="h-5 w-5" fill={inWishlist ? "currentColor" : "none"} /></button><div className="product-gallery__badge"><PackageCheck className="h-4 w-4" /> منتج موصى به</div></div>
@@ -51,7 +52,7 @@ export default function ProductContent() {
             <p className="product-description">{product.description}</p>
             <div className="product-facts"><div><span className="product-facts__icon"><PackageCheck className="h-4 w-4" /></span><span><small>الحد الأدنى</small><strong>{product.moq} {product.unit}</strong></span></div><div><span className="product-facts__icon"><Truck className="h-4 w-4" /></span><span><small>التجهيز</small><strong>{product.readyToShip ? "جاهز للشحن" : "حسب الطلب"}</strong></span></div><div><span className="product-facts__icon"><ShieldCheck className="h-4 w-4" /></span><span><small>الجودة</small><strong>مراجعة المورد</strong></span></div></div>
             <div className="purchase-panel"><div className="purchase-panel__head"><span>الكمية المطلوبة</span><small>ابدأ من {product.moq} {product.unit}</small></div><div className="purchase-panel__row"><div className="quantity-stepper"><button onClick={() => setQuantity(Math.max(product.moq, quantity - 1))} aria-label="تقليل الكمية"><Minus className="h-4 w-4" /></button><strong>{quantity}</strong><button onClick={() => setQuantity(quantity + 1)} aria-label="زيادة الكمية"><Plus className="h-4 w-4" /></button></div><span className="quantity-unit">{product.unit}</span><Button className="purchase-panel__add" onClick={handleAddToCart}><ShoppingCart className="h-4 w-4" /> أضف إلى السلة</Button><button className={`purchase-panel__wish ${inWishlist ? "is-active" : ""}`} onClick={toggleWishlist} aria-label="المفضلة"><Heart className="h-5 w-5" fill={inWishlist ? "currentColor" : "none"} /></button></div></div>
-            {supplier ? <div className="supplier-panel"><div className="supplier-panel__avatar">{supplier.name.slice(0, 1)}</div><div className="supplier-panel__copy"><div><strong>{supplier.name}</strong>{supplier.verified ? <CheckCircle className="h-3.5 w-3.5 text-[#8d2941]" /> : null}</div><p><MapPin className="h-3 w-3" /> {supplier.country} <i /> {supplier.yearsInBusiness} سنوات خبرة</p></div><button className="supplier-panel__contact"><MessageCircle className="h-4 w-4" /> تواصل</button></div> : null}
+            {supplier ? <div className="supplier-panel"><div className="supplier-panel__avatar">{supplier.name.slice(0, 1)}</div><div className="supplier-panel__copy"><div><strong>{supplier.name}</strong>{supplier.verified ? <CheckCircle className="h-3.5 w-3.5 text-[#8d2941]" /> : null}</div><p><MapPin className="h-3 w-3" /> {supplier.country} <i /> {supplier.yearsInBusiness} سنوات خبرة</p></div><Link href="/suppliers" className="supplier-panel__contact"><MessageCircle className="h-4 w-4" /> تواصل</Link></div> : null}
           </section>
         </div>
         <section className="product-notes"><div><Truck className="h-5 w-5" /><span><strong>خيارات شحن مناسبة</strong><small>يحددها المورد حسب موقعك والكمية</small></span></div><div><ShieldCheck className="h-5 w-5" /><span><strong>تفاصيل واضحة</strong><small>الحد الأدنى والسعر أمامك قبل الطلب</small></span></div><div><PackageCheck className="h-5 w-5" /><span><strong>جاهز لنشاطك</strong><small>اطلب الكمية التي تناسب دورة عملك</small></span></div></section>

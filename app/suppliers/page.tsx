@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { suppliers } from "@/lib/data";
-import { CheckCircle, MapPin, Star, MessageCircle, Globe } from "lucide-react";
+import { CheckCircle, MapPin, MessageCircle, Globe } from "lucide-react";
 
 import type { Metadata } from 'next';
 
@@ -23,7 +22,6 @@ export default function SuppliersPage() {
             <h1 className="text-xl sm:text-2xl font-bold">دليل الموردين</h1>
             <p className="text-sm text-gray-500 mt-1">{suppliers.length} مورد موثوق</p>
           </div>
-          <Button variant="outline">تصنيف حسب</Button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -58,14 +56,14 @@ export default function SuppliersPage() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="flex-1 text-xs">
-                    <MessageCircle className="h-3.5 w-3.5 ml-1" />
+                  <Link href="/help" className="inline-flex items-center justify-center gap-1 rounded-md border border-input bg-background px-3 py-2 text-xs font-medium hover:bg-muted flex-1">
+                    <MessageCircle className="h-3.5 w-3.5" />
                     تواصل
-                  </Button>
-                  <Button size="sm" className="flex-1 text-xs">
-                    <Globe className="h-3.5 w-3.5 ml-1" />
-                    زيارة
-                  </Button>
+                  </Link>
+                  <Link href={`/search?q=${encodeURIComponent(supplier.name)}`} className="inline-flex items-center justify-center gap-1 rounded-md bg-primary text-primary-foreground px-3 py-2 text-xs font-medium hover:opacity-90 flex-1">
+                    <Globe className="h-3.5 w-3.5" />
+                    منتجات المورد
+                  </Link>
                 </div>
               </CardContent>
             </Card>
