@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { useUserStore } from "@/lib/store";
+import { createNetworkStore } from "@/lib/network-store";
 import {
   ChevronLeft,
   Building,
@@ -157,7 +158,14 @@ export default function SellPage() {
 
   const handleSubmit = () => {
     if (validateStep(3)) {
-      // Save to localStorage / Zustand
+      createNetworkStore({
+        name: formData.companyName,
+        owner: formData.contactName,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        category: formData.productCategories[0] || formData.mainProducts,
+      });
       login(
         {
           id: `seller-${Date.now()}`,
@@ -216,9 +224,7 @@ export default function SellPage() {
               <Link href="/">
                 <Button variant="outline">العودة للرئيسية</Button>
               </Link>
-              <Link href="/account">
-                <Link href="/account"><Button>الذهاب للوحة التحكم</Button></Link>
-              </Link>
+              <Link href="/account"><Button>الذهاب للوحة التحكم</Button></Link>
             </div>
           </div>
         </main>

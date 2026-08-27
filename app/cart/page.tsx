@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useUserStore } from "@/lib/store";
+import { createNetworkOrder } from "@/lib/network-store";
 import { getSupplierById } from "@/lib/data";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -28,15 +29,24 @@ export default function CartPage() {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const clearCart = useCartStore((state) => state.clearCart);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+  const user = useUserStore((state) => state.user);
   const [couponCode, setCouponCode] = useState("");
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [placedOrderId, setPlacedOrderId] = useState("");
 
   
   const handleCheckout = async () => {
+    if (!items.length) return;
     setIsCheckingOut(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    const order = createNetworkOrder({
+      buyer: user?.name || "مشتري تجريبي - صنعاء",
+      storeId: "store-sanaa",
+      items: items.reduce((sum, item) => sum + item.quantity, 0),
+      total: getTotalPrice() + (getTotalPrice() > 500 ? 0 : 25),
+    });
+    setPlacedOrderId(order.id);
     setOrderPlaced(true);
     clearCart();
     setIsCheckingOut(false);
@@ -54,7 +64,8 @@ export default function CartPage() {
               </svg>
             </div>
             <h1 className="text-2xl font-bold mb-2">تم الطلب بنجاح!</h1>
-            <p className="text-gray-600 mb-6">سيتم إرسال تفقيبل الطلب إلى بريدك الإلكتروني</p>
+            <p className="text-gray-600 mb-2">تم تسجيل طلبك داخل الشبكة بنجاح.</p>
+            <p className="text-sm text-primary mb-6">رقم الطلب: {placedOrderId}</p>
             <div className="flex gap-3 justify-center">
               <Link href="/orders"><Button>متابعة الطلب</Button></Link>
               <Link href="/"><Button variant="outline">العودة للتسوق</Button></Link>
