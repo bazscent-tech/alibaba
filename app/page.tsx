@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, BarChart3, Package, Search, Sparkles, Store, Zap } from "lucide-react";
+import { ArrowLeft, BarChart3, BadgeCheck, Boxes, MessageCircle, Package, Search, Sparkles, Store, Zap } from "lucide-react";
 import { Header } from "@/components/header";
 import { ProductCard } from "@/components/product-card";
 import { getFeaturedProducts, getTopRatedProducts } from "@/lib/data";
@@ -29,6 +29,15 @@ export default function HomePage() {
           <div className="hero-floating hero-floating--top"><span className="hero-floating__icon"><Zap className="h-4 w-4" /></span><div><strong>عروض ذكية</strong><small>خصومات للمشترين</small></div></div>
           <div className="hero-floating hero-floating--bottom"><span className="hero-floating__avatar">ش</span><div><strong>مصنع النور</strong><small>مورد موثق منذ 12 سنة</small></div><span className="hero-floating__check">✓</span></div>
           <span className="hero-visual-label">DISCOVER<br /><strong>YOUR NEXT<br />BESTSELLER</strong></span>
+        </div>
+      </section>
+
+      <section className="shell home-trust-strip" aria-label="مزايا شبام">
+        <div className="home-trust-intro"><span>لماذا شبام؟</span><strong>منصة واحدة لدورة شراء أوضح.</strong></div>
+        <div className="home-trust-items">
+          <div className="home-trust-item"><BadgeCheck /><span><strong>موردون موثوقون</strong><small>بيانات المورد واضحة قبل الطلب</small></span></div>
+          <div className="home-trust-item"><Boxes /><span><strong>كميات جملة واضحة</strong><small>الحد الأدنى ظاهر في كل منتج</small></span></div>
+          <div className="home-trust-item"><MessageCircle /><span><strong>تواصل مباشر</strong><small>اسأل المورد من صفحة المنتج</small></span></div>
         </div>
       </section>
 
