@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, ShoppingBag, UserRound, ChevronDown, Globe2, Heart, Sparkles } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useCartStore, useUserStore, useWishlistStore } from "@/lib/store";
 
 export function Header() {
@@ -13,9 +12,6 @@ export function Header() {
   const cartItems = useCartStore((state) => state.getTotalItems());
   const wishlistItems = useWishlistStore((state) => state.items.length);
   const { isLoggedIn, user, logout } = useUserStore();
-  const handleLogout = () => {
-    logout();
-  };
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,14 +30,12 @@ export function Header() {
           <div className="header-utility__links">
             <span>تسوق بثقة</span>
             <span className="header-dot" />
-            <DropdownMenu>
-              <DropdownMenuTrigger className="inline-flex items-center gap-1 hover:text-white transition-colors">
-                <Globe2 className="h-3.5 w-3.5" /> العربية <ChevronDown className="h-3 w-3" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>العربية (الحالية)</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <details className="header-dropdown header-language-dropdown">
+              <summary className="header-language-trigger"><Globe2 className="h-3.5 w-3.5" /> العربية <ChevronDown className="h-3 w-3" /></summary>
+              <div className="header-dropdown__menu" role="menu">
+                <button type="button" className="header-dropdown__item is-current" role="menuitem" disabled>العربية (الحالية)</button>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -55,12 +49,7 @@ export function Header() {
 
           <form onSubmit={handleSearch} className="header-search">
             <Search className="header-search__icon" />
-            <input
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="ابحث عن منتج أو مورد..."
-              aria-label="البحث عن منتج أو مورد"
-            />
+            <input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="ابحث عن منتج أو مورد..." aria-label="البحث عن منتج أو مورد" />
             <button type="submit">بحث</button>
           </form>
 
@@ -73,26 +62,26 @@ export function Header() {
               <span className="header-action__icon"><ShoppingBag className="h-[19px] w-[19px]" />{cartItems > 0 ? <b>{cartItems > 99 ? "99+" : cartItems}</b> : null}</span>
               <span className="header-action__label">السلة</span>
             </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="header-action" aria-label="الحساب">
+            <details className="header-dropdown header-account-dropdown">
+              <summary className="header-action" aria-label="الحساب">
                 <span className="header-action__icon"><UserRound className="h-[19px] w-[19px]" /></span>
                 <span className="header-action__label">{isLoggedIn ? user?.name || "حسابي" : "حسابي"}</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
+              </summary>
+              <div className="header-dropdown__menu" role="menu">
                 {isLoggedIn ? (
                   <>
-                    <DropdownMenuItem asChild><Link href="/account">حسابي</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild><Link href="/orders">طلباتي</Link></DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleLogout}>تسجيل الخروج</DropdownMenuItem>
+                    <Link href="/account" className="header-dropdown__item" role="menuitem">حسابي</Link>
+                    <Link href="/orders" className="header-dropdown__item" role="menuitem">طلباتي</Link>
+                    <button type="button" className="header-dropdown__item is-danger" role="menuitem" onClick={logout}>تسجيل الخروج</button>
                   </>
                 ) : (
                   <>
-                    <DropdownMenuItem asChild><Link href="/login">تسجيل الدخول</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild><Link href="/register">إنشاء حساب</Link></DropdownMenuItem>
+                    <Link href="/login" className="header-dropdown__item" role="menuitem">تسجيل الدخول</Link>
+                    <Link href="/register" className="header-dropdown__item" role="menuitem">إنشاء حساب</Link>
                   </>
                 )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </div>
+            </details>
             <Link href="/account" className="header-sell">سجّل كتاجر <span>↗</span></Link>
           </div>
         </div>
