@@ -54,7 +54,9 @@ export function ProductCard({ product }: ProductCardProps) {
         <button className={`product-card__favorite ${inWishlist ? "is-active" : ""}`} onClick={handleWishlist} aria-label={inWishlist ? "إزالة من المفضلة" : "إضافة للمفضلة"}>
           <Heart className="h-[17px] w-[17px]" fill={inWishlist ? "currentColor" : "none"} />
         </button>
-        <Link href={`/product/${product.slug}`} className="product-card__quick"><ArrowUpLeft className="h-4 w-4" /></Link>
+        <Link href={`/product/${product.slug}`} className="product-card__quick" aria-label={`عرض ${product.name}`}>
+          <ArrowUpLeft className="h-4 w-4" />
+        </Link>
       </div>
       <div className="product-card__body">
         <div className="product-card__supplier">
@@ -62,12 +64,21 @@ export function ProductCard({ product }: ProductCardProps) {
           <span>{supplier?.name || "مورد موثوق"}</span>
         </div>
         <Link href={`/product/${product.slug}`} className="product-card__title">{product.name}</Link>
-        <div className="product-card__rating"><span className="rating-stars"><Star className="h-3.5 w-3.5" fill="currentColor" /> {product.rating}</span><span>{product.orders.toLocaleString("ar-YE")} طلب</span></div>
-        <div className="product-card__footer">
-          <div><span className="product-card__price">${product.priceMin.toFixed(2)}</span><span className="product-card__unit"> / {product.unit}</span><span className="product-card__range">حتى ${product.priceMax.toFixed(2)}</span></div>
-          <button className="product-card__add" onClick={handleAddToCart} aria-label={`إضافة ${product.name} للسلة`}><ShoppingCart className="h-4 w-4" /></button>
+        <div className="product-card__rating">
+          <span className="rating-stars"><Star className="h-3.5 w-3.5" fill="currentColor" /> {product.rating}</span>
+          <span>{product.orders.toLocaleString("ar-YE")} طلب</span>
         </div>
-        <p className="product-card__moq">الحد الأدنى للطلب: <strong>{product.moq} {product.unit}</strong></p>
+        <div className="product-card__footer">
+          <div className="product-card__price-box">
+            <span className="product-card__wholesale-label">سعر الجملة يبدأ من</span>
+            <div><span className="product-card__price">${product.priceMin.toFixed(2)}</span><span className="product-card__unit"> / {product.unit}</span></div>
+            <span className="product-card__range">حسب الكمية: حتى ${product.priceMax.toFixed(2)}</span>
+          </div>
+          <button className="product-card__add" onClick={handleAddToCart} aria-label={`إضافة ${product.name} للسلة`}>
+            <ShoppingCart className="h-4 w-4" />
+          </button>
+        </div>
+        <p className="product-card__moq"><span>الحد الأدنى للطلب</span><strong>{product.moq} {product.unit}</strong></p>
       </div>
     </Card>
   );
