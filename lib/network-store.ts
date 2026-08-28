@@ -127,7 +127,7 @@ export function createNetworkProduct(input: Omit<NetworkProduct, "id" | "created
 
 export function createNetworkOrder(input: Omit<NetworkOrder, "id" | "createdAt" | "status">) {
   const state = readNetworkState();
-  const order: NetworkOrder = { ...input, id: `SHP-${new Date().getFullYear()}-${String(state.orders.length + 1).padStart(3, "0")}`, status: "new", createdAt: new Date().toISOString().slice(0, 10) };
+  const order: NetworkOrder = { ...input, id: `SHP-${new Date().getFullYear()}-${Date.now().toString().slice(-8)}`, status: "new", createdAt: new Date().toISOString().slice(0, 10) };
   writeNetworkState({ ...state, orders: [order, ...state.orders] });
   syncApi("/api/orders", "POST", order);
   return order;

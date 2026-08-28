@@ -56,11 +56,14 @@ export default function CartPage() {
     if (!items.length) return;
     setIsCheckingOut(true);
     await new Promise((resolve) => setTimeout(resolve, 500));
+    const subtotalNow = getTotalPrice();
+    const shippingNow = subtotalNow > 500 ? 0 : 25;
+    const storeBySupplier: Record<string, string> = { "sup-1": "store-aden", "sup-2": "store-sanaa", "sup-3": "store-aden", "sup-4": "store-taiz" };
     const order = createNetworkOrder({
       buyer: user?.name || "مشتري تجريبي - صنعاء",
-      storeId: "store-sanaa",
+      storeId: storeBySupplier[items[0].product.supplierId] || "store-sanaa",
       items: items.reduce((sum, item) => sum + item.quantity, 0),
-      total: getTotalPrice() + (getTotalPrice() > 500 ? 0 : 25),
+      total: Math.max(0, subtotalNow + shippingNow - discount),
     });
     setPlacedOrderId(order.id);
     setOrderPlaced(true);
