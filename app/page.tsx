@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, BarChart3, BadgeCheck, Boxes, MessageCircle, Package, Search, Sparkles, Store, Zap } from "lucide-react";
+import { ArrowLeft, BarChart3, Package, Search, Sparkles, Store, Zap } from "lucide-react";
 import { Header } from "@/components/header";
 import { ProductCard } from "@/components/product-card";
 import { getFeaturedProducts, getTopRatedProducts } from "@/lib/data";
@@ -32,14 +32,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="shell home-trust-strip" aria-label="مزايا شبام">
-        <div className="home-trust-intro"><span>لماذا شبام؟</span><strong>منصة واحدة لدورة شراء أوضح.</strong></div>
-        <div className="home-trust-items">
-          <div className="home-trust-item"><BadgeCheck /><span><strong>موردون موثوقون</strong><small>بيانات المورد واضحة قبل الطلب</small></span></div>
-          <div className="home-trust-item"><Boxes /><span><strong>كميات جملة واضحة</strong><small>الحد الأدنى ظاهر في كل منتج</small></span></div>
-          <div className="home-trust-item"><MessageCircle /><span><strong>تواصل مباشر</strong><small>اسأل المورد من صفحة المنتج</small></span></div>
-        </div>
-      </section>
 
       <section className="shell showcase-grid">
         <Link href="/deals" className="showcase-card showcase-card--orange">

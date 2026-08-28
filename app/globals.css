@@ -914,3 +914,29 @@ body { background: var(--shibam-canvas); color: var(--shibam-ink); }
   .hero-floating--top, .hero-floating--bottom { animation: none; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+
+/* Compact discovery layout */
+.explore-page { padding-block: clamp(1.1rem, 3vw, 2rem) 2.5rem; }
+.explore-search { height: 58px; margin-top: .35rem; margin-bottom: .8rem; border-color: rgba(19,41,68,.12); border-radius: 16px; box-shadow: 0 12px 26px rgba(19,41,68,.06); }
+.explore-search:focus-within { border-color: rgba(239,99,60,.58); box-shadow: 0 0 0 4px rgba(239,99,60,.09), 0 12px 26px rgba(19,41,68,.06); }
+.explore-search > svg { color: var(--shibam-coral); }
+.explore-search input { font-size: .78rem; }
+.explore-search button { min-height: 42px; padding-inline: 1.15rem; border-radius: 12px; background: linear-gradient(135deg, var(--shibam-coral), var(--shibam-coral-dark)); box-shadow: 0 8px 16px rgba(239,99,60,.16); }
+.explore-search button:hover { background: var(--shibam-ink); }
+.explore-toolbar { margin-bottom: 1.15rem; padding: .65rem .8rem; border-color: rgba(19,41,68,.09); border-radius: 14px; box-shadow: 0 8px 20px rgba(19,41,68,.035); }
+.explore-toolbar__title { color: var(--shibam-coral); }
+.explore-toolbar__title strong { color: var(--shibam-ink); font-size: .76rem; }
+.explore-toolbar__title span { color: #8796a8; }
+.explore-toolbar__controls select { border-color: #dce4ed; border-radius: 9px; color: var(--shibam-ink-soft); }
+.explore-toolbar__controls select:focus { border-color: rgba(239,99,60,.55); }
+.explore-grid { gap: clamp(.75rem, 1.5vw, 1.15rem); }
+@media (max-width: 640px) {
+  .explore-page { padding-top: .85rem; }
+  .explore-search { height: 52px; margin-top: 0; }
+  .explore-search button { min-height: 38px; padding-inline: .85rem; }
+  .explore-toolbar { align-items: stretch; flex-direction: column; gap: .65rem; padding: .7rem; }
+  .explore-toolbar__controls { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; }
+  .explore-toolbar__controls label { justify-content: space-between; }
+  .explore-toolbar__controls select { min-width: 0; max-width: none; flex: 1; }
+}
