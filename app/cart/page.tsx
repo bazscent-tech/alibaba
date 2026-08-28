@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore, useUserStore } from "@/lib/store";
 import { createNetworkOrder } from "@/lib/network-store";
-import { getSupplierById } from "@/lib/data";
+import { getProductById, getSupplierById } from "@/lib/data";
+import { decodeCartSharePayload } from "@/lib/share";
+import { ShareActions } from "@/components/share-actions";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -37,6 +39,26 @@ export default function CartPage() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [placedOrderId, setPlacedOrderId] = useState("");
+  const [sharedCartNotice, setSharedCartNotice] = useState("");
+  const importedShare = useRef(false);
+  const addItem = useCartStore((state) => state.addItem);
+
+  useEffect(() => {
+    if (importedShare.current) return;
+    importedShare.current = true;
+    const encodedShare = new URLSearchParams(window.location.search).get("share");
+    if (!encodedShare) return;
+    const sharedItems = decodeCartSharePayload(encodedShare);
+    let importedCount = 0;
+    sharedItems.forEach(({ id, quantity }) => {
+      const product = getProductById(id);
+      if (!product) return;
+      addItem(product, Math.max(product.moq, quantity));
+      importedCount += 1;
+    });
+    window.history.replaceState({}, "", "/cart");
+    if (importedCount) setSharedCartNotice(`تم تحميل ${importedCount} منتج من السلة المشتركة`);
+  }, [addItem]);
 
   
   const handleApplyCoupon = () => {
@@ -308,6 +330,8 @@ export default function CartPage() {
                   <CreditCard className="w-4 h-4 ml-2" />
                   إتمام الطلب
                 </Button>
+                {sharedCartNotice ? <p className="cart-share-notice">{sharedCartNotice}</p> : null}
+                <ShareActions cartItems={items} />
               </div>
             </Card>
 

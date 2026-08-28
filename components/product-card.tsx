@@ -61,7 +61,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="product-card__body">
         <div className="product-card__supplier">
           {supplier?.verified ? <CheckCircle className="h-3.5 w-3.5 text-[#2b74ff]" /> : null}
-          <span>{supplier?.name || "مورد موثوق"}</span>
+          {supplier ? <Link href={`/store/${supplier.id}`} className="product-card__supplier-link">{supplier.name}</Link> : <span>مورد موثوق</span>}
         </div>
         <Link href={`/product/${product.slug}`} className="product-card__title">{product.name}</Link>
         <div className="product-card__rating">

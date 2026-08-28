@@ -56,13 +56,13 @@ export default function SuppliersPage() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Link href="/help" className="inline-flex items-center justify-center gap-1 rounded-md border border-input bg-background px-3 py-2 text-xs font-medium hover:bg-muted flex-1">
+                  <Link href={`/messages?supplier=${encodeURIComponent(supplier.name)}`} className="inline-flex items-center justify-center gap-1 rounded-md border border-input bg-background px-3 py-2 text-xs font-medium hover:bg-muted flex-1">
                     <MessageCircle className="h-3.5 w-3.5" />
                     تواصل
                   </Link>
-                  <Link href={`/search?q=${encodeURIComponent(supplier.name)}`} className="inline-flex items-center justify-center gap-1 rounded-md bg-primary text-primary-foreground px-3 py-2 text-xs font-medium hover:opacity-90 flex-1">
+                  <Link href={`/store/${supplier.id}`} className="inline-flex items-center justify-center gap-1 rounded-md bg-primary text-primary-foreground px-3 py-2 text-xs font-medium hover:opacity-90 flex-1">
                     <Globe className="h-3.5 w-3.5" />
-                    منتجات المورد
+                    زيارة المتجر
                   </Link>
                 </div>
               </CardContent>

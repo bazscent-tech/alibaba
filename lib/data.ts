@@ -1414,6 +1414,10 @@ export const getSupplierById = (id: string): Supplier | undefined => {
   return suppliers.find(s => s.id === id);
 };
 
+export const getProductsBySupplier = (supplierId: string): Product[] => {
+  return products.filter(product => product.supplierId === supplierId);
+};
+
 export const searchProducts = (query: string): Product[] => {
   const lowerQuery = query.toLowerCase();
   return products.filter(p => 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Product, getSupplierById } from "@/lib/data";
 import { useCartStore } from "@/lib/store";
+import { ShareActions } from "@/components/share-actions";
 import {
   Dialog,
   DialogContent,
@@ -23,7 +24,6 @@ import {
   Plus,
   Minus,
   Heart,
-  Share2,
   CheckCircle2,
 } from "lucide-react";
 
@@ -106,7 +106,7 @@ export function QuickViewModal({
                 <Package className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="font-medium">{product.supplierId}</p>
+                <Link href={`/store/${supplier?.id || product.supplierId}`} className="font-medium hover:text-primary">{supplier?.name || "مورد موثوق"}</Link>
                 <p className="text-xs text-muted-foreground">{product.origin}</p>
               </div>
               {false && (
@@ -168,10 +168,7 @@ export function QuickViewModal({
                 <Heart className="w-4 h-4" />
                 حفظ
               </Button>
-              <Button variant="ghost" size="sm" className="flex-1 gap-2">
-                <Share2 className="w-4 h-4" />
-                مشاركة
-              </Button>
+              <ShareActions product={product} compact />
             </div>
 
             {/* Trust Badges */}
