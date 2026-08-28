@@ -1,34 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useUserStore } from "@/lib/store";
-import { MessageCircle, Send, Store, User } from "lucide-react";
+import { MessageCircle, Send, Store, User, ShieldCheck, ArrowLeft } from "lucide-react";
 
 interface MessageItem { id: string; supplier: string; product?: string; message: string; createdAt: string; }
 
-function readMessages(): MessageItem[] {
-  if (typeof window === "undefined") return [];
-  try { return JSON.parse(window.localStorage.getItem("shibam-messages") || "[]") as MessageItem[]; } catch { return []; }
-}
-
 export default function MessagesPage() {
-  const searchParams = useSearchParams();
   const { isLoggedIn, user } = useUserStore();
-  const supplier = searchParams.get("supplier") || "التاجر";
-  const product = searchParams.get("product") || undefined;
+  const [supplier, setSupplier] = useState("التاجر");
+  const [product, setProduct] = useState<string>();
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<MessageItem[]>(readMessages);
+  const [messages, setMessages] = useState<MessageItem[]>([]);
 
-  if (!isLoggedIn) {
-    return <div className="min-h-screen bg-muted/30"><Header /><main className="container-responsive py-16 text-center"><MessageCircle className="h-14 w-14 mx-auto text-primary/60 mb-4" /><h1 className="text-2xl font-bold mb-2">سجّل الدخول للمراسلة</h1><p className="text-muted-foreground mb-6">استخدم حسابك لمراسلة التجار ومتابعة ردودهم.</p><Link href="/login"><Button>تسجيل الدخول</Button></Link></main><Footer /></div>;
-  }
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSupplier(params.get("supplier") || "التاجر");
+    setProduct(params.get("product") || undefined);
+    try { setMessages(JSON.parse(window.localStorage.getItem("shibam-messages") || "[]") as MessageItem[]); } catch { setMessages([]); }
+  }, []);
+
+  const threadMessages = useMemo(() => messages.filter((item) => item.supplier === supplier), [messages, supplier]);
 
   const handleSend = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,5 +38,9 @@ export default function MessagesPage() {
     setMessage("");
   };
 
-  return <div className="min-h-screen bg-muted/30"><Header /><main className="container-responsive animate-fade-in py-6 sm:py-8"><div className="mb-6"><p className="text-sm text-primary font-semibold mb-1">تواصل مباشر</p><h1 className="text-2xl font-bold">مراسلاتي</h1><p className="text-sm text-muted-foreground mt-1">اسأل التاجر عن السعر، الكمية، والشحن قبل الطلب.</p></div><div className="grid lg:grid-cols-3 gap-5"><Card className="lg:col-span-2"><CardContent className="p-5"><div className="flex items-center gap-3 border-b pb-4 mb-5"><div className="h-11 w-11 rounded-full bg-primary/10 flex items-center justify-center"><Store className="h-5 w-5 text-primary" /></div><div><p className="font-bold">{supplier}</p><p className="text-xs text-muted-foreground">{product ? `بخصوص: ${product}` : "محادثة تجارية"}</p></div></div><div className="min-h-40 space-y-3 mb-5">{messages.filter((item) => item.supplier === supplier).length === 0 ? <div className="py-10 text-center text-sm text-muted-foreground">ابدأ برسالة قصيرة وواضحة للتاجر.</div> : messages.filter((item) => item.supplier === supplier).map((item) => <div key={item.id} className="rounded-xl bg-primary/5 border border-primary/10 p-3"><p className="text-sm">{item.message}</p><p className="text-[11px] text-muted-foreground mt-2">من {user?.name || "حسابي"} · {new Date(item.createdAt).toLocaleString("ar-YE")}</p></div>)}</div><form onSubmit={handleSend} className="flex gap-2 items-end"><Textarea value={message} onChange={(event) => setMessage(event.target.value)} placeholder="اكتب رسالتك للتاجر..." className="min-h-20" required /><Button type="submit" size="icon" aria-label="إرسال الرسالة" className="shrink-0"><Send className="h-4 w-4" /></Button></form></CardContent></Card><Card><CardContent className="p-5"><h2 className="font-bold mb-4">نصائح للتواصل</h2><div className="space-y-3 text-sm text-muted-foreground"><p className="flex gap-2"><User className="h-4 w-4 text-primary shrink-0" />اذكر الكمية المطلوبة وبلد التسليم.</p><p className="flex gap-2"><MessageCircle className="h-4 w-4 text-primary shrink-0" />اطلب السعر النهائي ومدة التجهيز.</p><p className="flex gap-2"><Store className="h-4 w-4 text-primary shrink-0" />لا تشارك كلمة المرور أو بيانات الدفع داخل الرسائل.</p></div></CardContent></Card></div></main><Footer /></div>;
+  if (!isLoggedIn) {
+    return <div className="min-h-screen bg-muted/30"><Header /><main className="container-responsive messages-gate"><div className="surface messages-gate__card"><span className="messages-gate__icon"><MessageCircle /></span><p className="eyebrow">تواصل بثقة</p><h1>سجّل الدخول للمراسلة</h1><p>استخدم حسابك للشراء ومراسلة التجار ومتابعة ردودهم من مكان واحد.</p><div><Link href="/login" className="hero-cta__primary">تسجيل الدخول <ArrowLeft className="h-4 w-4" /></Link><Link href="/register" className="hero-cta__secondary">إنشاء حساب</Link></div></div></main><Footer /></div>;
+  }
+
+  return <div className="min-h-screen bg-muted/30"><Header /><main className="container-responsive messages-page"><div className="messages-heading"><div><p className="eyebrow">تواصل مباشر</p><h1>مراسلاتي</h1><p>اسأل التاجر عن السعر، الكمية، والشحن قبل الطلب.</p></div><Link href="/account" className="messages-heading__back">العودة إلى الحساب <ArrowLeft className="h-4 w-4" /></Link></div><div className="messages-layout"><section className="surface messages-thread"><div className="messages-thread__head"><div className="messages-thread__avatar"><Store className="h-5 w-5" /></div><div><strong>{supplier}</strong><small>{product ? `بخصوص: ${product}` : "محادثة تجارية"}</small></div><span className="messages-thread__status"><span /> متاح</span></div><div className="messages-thread__body">{threadMessages.length === 0 ? <div className="messages-empty"><MessageCircle className="h-8 w-8" /><strong>ابدأ المحادثة</strong><span>اكتب رسالة قصيرة وواضحة للتاجر.</span></div> : threadMessages.map((item) => <div key={item.id} className="message-bubble"><p>{item.message}</p><small>من {user?.name || "حسابي"} · {new Date(item.createdAt).toLocaleString("ar-YE")}</small></div>)}</div><form onSubmit={handleSend} className="messages-composer"><Textarea value={message} onChange={(event) => setMessage(event.target.value)} placeholder="اكتب رسالتك للتاجر..." required /><Button type="submit" size="icon" aria-label="إرسال الرسالة"><Send className="h-4 w-4" /></Button></form></section><aside className="surface messages-tips"><span className="messages-tips__icon"><ShieldCheck className="h-5 w-5" /></span><p className="eyebrow">تواصل آمن</p><h2>نصائح للتواصل</h2><div><p><User className="h-4 w-4" /> اذكر الكمية المطلوبة وبلد التسليم.</p><p><MessageCircle className="h-4 w-4" /> اطلب السعر النهائي ومدة التجهيز.</p><p><Store className="h-4 w-4" /> لا تشارك كلمة المرور أو بيانات الدفع داخل الرسائل.</p></div></aside></div></main><Footer /></div>;
 }

@@ -608,3 +608,51 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   body { padding-bottom: 0; }
 }
 .admin-page .bottom-nav, .admin-login-page ~ .bottom-nav { display: none; }
+
+/* Messages workspace */
+.eyebrow { margin: 0 0 .35rem; color: #ef633c; font-size: .7rem; font-weight: 900; }
+.messages-page { padding-block: clamp(1.5rem, 4vw, 3rem); }
+.messages-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.messages-heading h1 { margin: 0; color: var(--primary); font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -.06em; }
+.messages-heading p:not(.eyebrow) { margin: .35rem 0 0; color: var(--muted-foreground); font-size: .78rem; }
+.messages-heading__back { display: inline-flex; align-items: center; gap: .35rem; color: #ef633c; font-size: .72rem; font-weight: 900; text-decoration: none; white-space: nowrap; }
+.messages-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(230px, .7fr); gap: 1rem; align-items: start; }
+.messages-thread, .messages-tips { overflow: hidden; }
+.messages-thread__head { display: flex; align-items: center; gap: .7rem; padding: 1rem 1.1rem; border-bottom: 1px solid #edf0f4; }
+.messages-thread__avatar, .messages-tips__icon, .messages-gate__icon { display: grid; place-items: center; flex-shrink: 0; border-radius: 14px; color: #ef633c; background: #fff0e9; }
+.messages-thread__avatar { width: 40px; height: 40px; }
+.messages-thread__head > div:nth-child(2) { display: flex; flex-direction: column; min-width: 0; }
+.messages-thread__head strong { color: #203958; font-size: .8rem; }
+.messages-thread__head small { overflow: hidden; color: #9aa4b2; font-size: .62rem; text-overflow: ellipsis; white-space: nowrap; }
+.messages-thread__status { display: inline-flex; align-items: center; gap: .3rem; margin-inline-start: auto; color: #1b9b70; font-size: .6rem; font-weight: 800; }
+.messages-thread__status span { width: 6px; height: 6px; border-radius: 50%; background: #1bb883; }
+.messages-thread__body { min-height: 260px; padding: 1rem; background: #fbfcfe; }
+.messages-empty { display: grid; place-items: center; align-content: center; min-height: 220px; gap: .35rem; color: #a0aaba; text-align: center; }
+.messages-empty svg { color: #efb4a1; }
+.messages-empty strong { color: #52657d; font-size: .82rem; }
+.messages-empty span { font-size: .65rem; }
+.message-bubble { width: fit-content; max-width: min(88%, 500px); margin: 0 0 .65rem auto; padding: .75rem .85rem; border: 1px solid #f4d5ca; border-radius: 15px 15px 4px 15px; background: #fff4ef; }
+.message-bubble p { margin: 0; color: #304964; font-size: .75rem; line-height: 1.8; }
+.message-bubble small { display: block; margin-top: .35rem; color: #a18e87; font-size: .55rem; }
+.messages-composer { display: flex; align-items: end; gap: .55rem; padding: .8rem; border-top: 1px solid #edf0f4; background: #fff; }
+.messages-composer textarea { min-height: 54px; resize: vertical; border-color: #e6eaf1; border-radius: 13px; font-size: .72rem; }
+.messages-composer button { flex: 0 0 42px; height: 42px; border-radius: 12px; background: #ef633c; }
+.messages-tips { padding: 1.1rem; }
+.messages-tips__icon { width: 38px; height: 38px; margin-bottom: .85rem; }
+.messages-tips h2 { margin: 0 0 1rem; color: #203958; font-size: 1rem; }
+.messages-tips > div { display: grid; gap: .85rem; }
+.messages-tips p { display: flex; align-items: flex-start; gap: .45rem; margin: 0; color: #718096; font-size: .68rem; line-height: 1.75; }
+.messages-tips p svg { flex-shrink: 0; margin-top: .15rem; color: #ef633c; }
+.messages-gate { display: grid; place-items: center; min-height: 62vh; padding-block: 2rem; }
+.messages-gate__card { width: min(100%, 510px); padding: clamp(1.5rem, 4vw, 2.5rem); text-align: center; }
+.messages-gate__icon { width: 58px; height: 58px; margin: 0 auto 1rem; }
+.messages-gate__icon svg { width: 27px; height: 27px; }
+.messages-gate h1 { margin: 0; color: var(--primary); font-size: 1.45rem; }
+.messages-gate p:not(.eyebrow) { margin: .55rem auto 1.25rem; color: var(--muted-foreground); font-size: .75rem; }
+.messages-gate__card > div:last-child { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem; }
+@media (max-width: 767px) {
+  .messages-heading { align-items: flex-start; flex-direction: column; }
+  .messages-heading__back { align-self: flex-start; }
+  .messages-layout { grid-template-columns: 1fr; }
+  .messages-tips { order: 2; }
+}
