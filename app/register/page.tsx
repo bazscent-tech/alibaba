@@ -86,8 +86,6 @@ export default function RegisterPage() {
                 <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "جاري إنشاء الحساب..." : "إنشاء الحساب"}</Button>
               </form>
 
-              <div className="relative my-6"><div className="absolute inset-0 flex items-center"><span className="w-full border-t" /></div><div className="relative flex justify-center text-xs"><span className="bg-card px-3 text-muted-foreground">أو</span></div></div>
-              <Button type="button" variant="outline" className="w-full gap-3 h-11" onClick={() => window.location.assign(new URL("/api/auth/google", window.location.origin).toString())}><svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.24c0-.74-.07-1.45-.21-2.12H12v4.01h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.28Z"/><path fill="#34A853" d="M12 21.6c2.63 0 4.84-.87 6.45-2.36l-3.14-2.45c-.87.58-1.98.93-3.31.93-2.54 0-4.69-1.72-5.46-4.03H3.29v2.53A9.74 9.74 0 0 0 12 21.6Z"/><path fill="#FBBC05" d="M6.54 13.69A5.86 5.86 0 0 1 6.23 12c0-.59.11-1.16.31-1.69V7.78H3.29A9.7 9.7 0 0 0 2.26 12c0 1.56.37 3.03 1.03 4.22l3.25-2.53Z"/><path fill="#EA4335" d="M12 6.28c1.43 0 2.72.49 3.73 1.46l2.8-2.8C16.84 3.33 14.63 2.4 12 2.4a9.74 9.74 0 0 0-8.71 5.38l3.25 2.53C7.31 8 9.46 6.28 12 6.28Z"/></svg>المتابعة باستخدام Google</Button>
               <p className="text-center text-sm text-muted-foreground mt-6">لديك حساب بالفعل؟ <Link href="/login" className="text-primary font-semibold hover:underline">تسجيل الدخول</Link></p>
             </CardContent>
           </Card>

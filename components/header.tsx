@@ -14,7 +14,7 @@ export function Header() {
   const wishlistItems = useWishlistStore((state) => state.items.length);
   const { isLoggedIn, user, logout } = useUserStore();
   const handleLogout = () => {
-    void fetch("/api/auth/google/logout/", { method: "POST", credentials: "include" }).finally(logout);
+    logout();
   };
 
   const handleSearch = (event: React.FormEvent) => {

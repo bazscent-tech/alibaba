@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json({ success: false, error: "يرجى إدخال بريد إلكتروني صحيح." }, { status: 400 });
     }
-    if (phone.length < 7 || phone.length > 30) {
+    if (phone && (phone.length < 7 || phone.length > 30)) {
       return NextResponse.json({ success: false, error: "يرجى إدخال رقم هاتف صحيح." }, { status: 400 });
     }
     if (typeof body.password !== "string" || body.password.length < 8) {

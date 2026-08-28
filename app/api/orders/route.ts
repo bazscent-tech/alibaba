@@ -7,7 +7,7 @@ export async function GET() { return NextResponse.json(getServerNetwork().orders
 
 export async function POST(request: Request) {
   const order = await request.json() as NetworkOrder;
-  if (!order?.id || !order?.storeId) return NextResponse.json({ error: "بيانات الطلب ناقصة" }, { status: 400 });
+  if (!order?.id || !order?.storeId || !order?.buyer || !Number.isFinite(order.items) || !Number.isFinite(order.total)) return NextResponse.json({ error: "بيانات الطلب ناقصة" }, { status: 400 });
   addServerOrder(order);
   return NextResponse.json(order, { status: 201 });
 }

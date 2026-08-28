@@ -7,6 +7,8 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
   if (!isValidAdminToken(request.headers.get("authorization"))) return NextResponse.json({ error: "غير مصرح" }, { status: 401 });
   const { id } = await context.params;
   const body = await request.json().catch(() => ({}));
-  const state = updateServerStore(decodeURIComponent(id), body.status as NetworkStoreStatus);
+  const statuses: NetworkStoreStatus[] = ["pending", "approved", "suspended"];
+  if (!statuses.includes(body.status)) return NextResponse.json({ error: "حالة المتجر غير صحيحة" }, { status: 400 });
+  const state = updateServerStore(decodeURIComponent(id), body.status);
   return NextResponse.json(state);
 }

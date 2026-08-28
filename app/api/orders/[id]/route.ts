@@ -7,6 +7,8 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
   if (!isValidAdminToken(request.headers.get("authorization"))) return NextResponse.json({ error: "غير مصرح" }, { status: 401 });
   const { id } = await context.params;
   const body = await request.json().catch(() => ({}));
-  const state = updateServerOrder(decodeURIComponent(id), body.status as NetworkOrderStatus);
+  const statuses: NetworkOrderStatus[] = ["new", "processing", "shipped", "completed"];
+  if (!statuses.includes(body.status)) return NextResponse.json({ error: "حالة الطلب غير صحيحة" }, { status: 400 });
+  const state = updateServerOrder(decodeURIComponent(id), body.status);
   return NextResponse.json(state);
 }
