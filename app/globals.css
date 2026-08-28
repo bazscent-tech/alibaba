@@ -1077,3 +1077,5 @@ select:focus, [data-slot="select-trigger"]:focus-visible { border-color: rgba(23
   .supplier-store-stats > div { align-items: flex-start; flex-direction: column; gap: .3rem; padding: .65rem; }
   .supplier-store-stats strong { font-size: .8rem; }
 }
+
+.cart-share-notice--warning { color: #9a5b13; background: #fff7e8; border: 1px solid #f4dfb4; }

@@ -42,6 +42,8 @@ export default function CartPage() {
   const [sharedCartNotice, setSharedCartNotice] = useState("");
   const importedShare = useRef(false);
   const addItem = useCartStore((state) => state.addItem);
+  const supplierCount = new Set(items.map((item) => item.product.supplierId)).size;
+  const hasMultipleSuppliers = supplierCount > 1;
 
   useEffect(() => {
     if (importedShare.current) return;
@@ -76,6 +78,10 @@ export default function CartPage() {
 
   const handleCheckout = async () => {
     if (!items.length) return;
+    if (hasMultipleSuppliers) {
+      showToast("error", "قسّم السلة حسب المورد قبل إتمام الطلب");
+      return;
+    }
     setIsCheckingOut(true);
     await new Promise((resolve) => setTimeout(resolve, 500));
     const subtotalNow = getTotalPrice();
@@ -326,7 +332,8 @@ export default function CartPage() {
                   <Button variant="outline" onClick={handleApplyCoupon} disabled={!couponCode.trim()}>تطبيق</Button>
                 </div>
 
-                <Button className="w-full press-effect" size="lg" onClick={handleCheckout} disabled={isCheckingOut}>
+                {hasMultipleSuppliers ? <p className="cart-share-notice cart-share-notice--warning">تضم السلة منتجات من {supplierCount} موردين. أتمم كل مورد في طلب مستقل.</p> : null}
+                <Button className="w-full press-effect" size="lg" onClick={handleCheckout} disabled={isCheckingOut || hasMultipleSuppliers}>
                   <CreditCard className="w-4 h-4 ml-2" />
                   إتمام الطلب
                 </Button>
